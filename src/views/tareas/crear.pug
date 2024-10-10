@@ -1,0 +1,41 @@
+//- src/views/tareas/crear.pug
+extends ../layout
+
+block content
+  h1= titulo
+  form(action='/tareas/crear', method='POST')
+    label(for='titulo') Título:
+    input(type='text', name='titulo', id='titulo', required)
+    
+    label(for='area') Área:
+    select(name='area', id='area', required)
+      option(value='Compras') Compras
+      option(value='Ventas') Ventas
+      option(value='Producción') Producción
+      option(value='Inventario') Inventario
+    
+    label(for='descripcion') Descripción:
+    textarea(name='descripcion', id='descripcion')
+    
+    label(for='estado') Estado:
+    select(name='estado', id='estado')
+      option(value='') Sin Estado
+      each estado in estados
+        option(value=estado._id)= estado.nombre
+    
+    label(for='prioridad') Prioridad:
+    select(name='prioridad', id='prioridad')
+      option(value='') Sin Prioridad
+      each prioridad in prioridades
+        option(value=prioridad._id)= prioridad.nombre
+    
+    label(for='usuarioAsignado') Usuario Asignado:
+    select(name='usuarioAsignado', id='usuarioAsignado')
+      option(value='') Sin Asignar
+      each usuario in usuarios
+        option(value=usuario._id)= usuario.nombre
+    
+    label(for='fechaVencimiento') Fecha de Vencimiento:
+    input(type='date', name='fechaVencimiento', id='fechaVencimiento')
+    
+    button(type='submit') Crear Tarea

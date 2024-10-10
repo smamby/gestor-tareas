@@ -1,0 +1,246 @@
+/* public/css/styles.css */
+
+/* Reset básico para eliminar márgenes y padding predeterminados */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Estilos del contenedor principal */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+  }
+  
+  /* Estilos de navegación */
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 16px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  nav ul li a:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  /* Estilos para encabezados */
+  h1 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Estilos para párrafos de mensajes */
+  p {
+    margin-bottom: 15px;
+    font-size: 1rem;
+  }
+  
+  /* Estilos de formularios */
+  form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  form input[type="text"],
+  form input[type="email"],
+  form input[type="password"],
+  form input[type="date"],
+  form select,
+  form textarea {
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  form textarea {
+    resize: vertical;
+    height: 100px;
+  }
+  
+  form button,
+  form a.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  form button:hover,
+  form a.button-link:hover {
+    background-color: #555;
+  }
+  
+  /* Estilos de tablas */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  table thead {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  table th,
+  table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  table a {
+    color: #333;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  table a:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  /* Estilos para filtros */
+  .filters-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filters-form div {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .filters-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .filters-form button,
+  .filters-form a.button-link {
+    width: fit-content;
+    padding: 8px 16px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .filters-form button:hover,
+  .filters-form a.button-link:hover {
+    background-color: #555;
+  }
+  
+  /* Estilos para enlaces transformados en botones */
+  a.button-link {
+    display: inline-block;
+    text-align: center;
+  }
+  
+
+
+/* Botones Generales */
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 4px 2px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Botón Principal (Azul) */
+  .btn-primary {
+    background-color: #007BFF;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Botón de Peligro (Rojo) */
+  .btn-danger {
+    background-color: #DC3545;
+  }
+  
+  .btn-danger:hover {
+    background-color: #a71d2a;
+  }
+  
+  /* Botón Secundario (Gris) */
+  .btn-secondary {
+    background-color: #6C757D;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #5a6268;
+  }
+  
+  /* Opcional: Botón para acciones pequeñas */
+  .btn-sm {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  

@@ -1,0 +1,23 @@
+//- src/views/layout.pug
+doctype html
+html
+  head
+    title= titulo
+    link(rel='stylesheet', href='/css/styles.css')
+  body
+    .container
+      nav
+        ul
+          if user
+            li: a.btn.btn-primary(href='/dashboard') Dashboard
+            if user.rol === 'administrador'
+              li: a.btn.btn-primary(href='/usuarios') Usuarios
+            li: a.btn.btn-primary(href='/tareas') Tareas
+            li: a.btn.btn-secondary(href='/auth/logout') Cerrar Sesión
+          else
+            li: a.btn.btn-primary(href='/auth/login') Iniciar Sesión
+      if error_msg
+        p(style="color: red")= error_msg
+      if success_msg
+        p(style="color: green")= success_msg
+      block content

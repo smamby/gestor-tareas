@@ -1,0 +1,28 @@
+//- src/views/usuarios/editar.pug
+extends ../layout
+
+block content
+  h1= titulo
+  form(action=`/usuarios/editar/${usuario._id}`, method='POST')
+    label(for='nombre') Nombre:
+    input(type='text', name='nombre', id='nombre', value=usuario.nombre, required)
+    
+    label(for='email') Email:
+    input(type='email', name='email', id='email', value=usuario.email, required)
+    
+    label(for='contraseña') Contraseña:
+    input(type='password', name='contraseña', id='contraseña', placeholder='Ingresa nueva contraseña si deseas cambiarla')
+    
+    label(for='rol') Rol:
+    select(name='rol', id='rol')
+      option(value='empleado', selected=usuario.rol === 'empleado') Empleado
+      option(value='administrador', selected=usuario.rol === 'administrador') Administrador
+    
+    label(for='departamento') Departamento:
+    select(name='departamento', id='departamento', required)
+      option(value='Compras', selected=usuario.departamento === 'Compras') Compras
+      option(value='Ventas', selected=usuario.departamento === 'Ventas') Ventas
+      option(value='Producción', selected=usuario.departamento === 'Producción') Producción
+      option(value='Inventario', selected=usuario.departamento === 'Inventario') Inventario
+    
+    button(type='submit') Actualizar Usuario

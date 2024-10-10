@@ -1,0 +1,24 @@
+//- src/views/usuarios/listar.pug
+extends ../layout
+
+block content
+  h1= titulo
+  a.btn.btn-primary(href='/usuarios/crear') Crear Nuevo Usuario
+  table
+    thead
+      tr
+        th Nombre
+        th Email
+        th Rol
+        th Departamento
+        th Acciones
+    tbody
+      each usuario in usuarios
+        tr
+          td= usuario.nombre
+          td= usuario.email
+          td= usuario.rol
+          td= usuario.departamento
+          td
+            a.btn.btn-primary.btn-sm(href=`/usuarios/editar/${usuario._id}`) Editar
+            a.btn.btn-danger.btn-sm(href=`/usuarios/eliminar/${usuario._id}`) Eliminar

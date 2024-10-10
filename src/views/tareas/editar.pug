@@ -1,0 +1,55 @@
+//- src/views/tareas/editar.pug
+extends ../layout
+
+block content
+  h1= titulo
+  form(action=`/tareas/editar/${tarea._id}`, method='POST')
+    label(for='titulo') Título:
+    input(type='text', name='titulo', id='titulo', value=tarea.titulo, required)
+    
+    label(for='area') Área:
+    select(name='area', id='area', required)
+      option(value='Compras', selected=tarea.area === 'Compras') Compras
+      option(value='Ventas', selected=tarea.area === 'Ventas') Ventas
+      option(value='Producción', selected=tarea.area === 'Producción') Producción
+      option(value='Inventario', selected=tarea.area === 'Inventario') Inventario
+    
+    label(for='descripcion') Descripción:
+    textarea(name='descripcion', id='descripcion')= tarea.descripcion
+    
+    label(for='estado') Estado:
+    select(name='estado', id='estado')
+      option(value='') Sin Estado
+      each estado in estados
+        option(
+          value=estado._id
+          selected=(tarea.estado && tarea.estado._id.toString() === estado._id.toString())
+        )= estado.nombre
+    
+    label(for='prioridad') Prioridad:
+    select(name='prioridad', id='prioridad')
+      option(value='') Sin Prioridad
+      each prioridad in prioridades
+        option(
+          value=prioridad._id
+          selected=(tarea.prioridad && tarea.prioridad._id.toString() === prioridad._id.toString())
+        )= prioridad.nombre
+    
+    label(for='usuarioAsignado') Usuario Asignado:
+    select(name='usuarioAsignado', id='usuarioAsignado')
+      option(value='') Sin Asignar
+      each usuario in usuarios
+        option(
+          value=usuario._id
+          selected=(tarea.usuarioAsignado && tarea.usuarioAsignado._id.toString() === usuario._id.toString())
+        )= usuario.nombre
+    
+    label(for='fechaVencimiento') Fecha de Vencimiento:
+    input(
+      type='date'
+      name='fechaVencimiento'
+      id='fechaVencimiento'
+      value=tarea.fechaVencimiento ? tarea.fechaVencimiento.toISOString().split('T')[0] : ''
+    )
+    
+    button(type='submit') Actualizar Tarea

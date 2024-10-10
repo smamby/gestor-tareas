@@ -1,0 +1,16 @@
+//- src/views/dashboard.pug
+extends layout
+
+block content
+  h1= titulo
+  p Bienvenido, #{user.nombre}!
+
+  if user.rol === 'administrador'
+    div
+      a.btn.btn-primary(href='/usuarios') Gestionar Usuarios
+      a.btn.btn-primary(href='/tareas') Gestionar Tareas
+  else
+    div
+      a.btn.btn-primary(href='/tareas') Mis Tareas
+
+  a.btn.btn-secondary(href='/auth/logout') Cerrar Sesión

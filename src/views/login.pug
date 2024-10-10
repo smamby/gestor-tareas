@@ -1,0 +1,17 @@
+//- src/views/login.pug
+extends layout
+
+block content
+  h1= titulo
+  if error_msg
+    p(style="color: red")= error_msg
+  if success_msg
+    p(style="color: green")= success_msg
+  form(action='/auth/login', method='POST')
+    label(for='email') Email:
+    input(type='email', name='email', id='email', required)
+    
+    label(for='contraseña') Contraseña:
+    input(type='password', name='contraseña', id='contraseña', required)
+    
+    button(type='submit') Iniciar Sesión

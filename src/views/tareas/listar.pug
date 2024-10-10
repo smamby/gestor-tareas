@@ -1,0 +1,63 @@
+//- src/views/tareas/listar.pug
+extends ../layout
+
+block content
+  h1= titulo
+  a.btn.btn-primary(href='/tareas/crear') Crear Nueva Tarea
+  table
+    thead
+      tr
+        th Título
+        th Área
+        th Estado
+        th Prioridad
+        th Usuario Asignado
+        th Fecha de Vencimiento
+        th Acciones
+    tbody
+      each tarea in tareas
+        tr
+          td= tarea.titulo
+          td= tarea.area
+          td= tarea.estado ? tarea.estado.nombre : 'Sin Estado'
+          td= tarea.prioridad ? tarea.prioridad.nombre : 'Sin Prioridad'
+          td= tarea.usuarioAsignado ? tarea.usuarioAsignado.nombre : 'Sin Asignar'
+          td= tarea.fechaVencimiento ? tarea.fechaVencimiento.toISOString().split('T')[0] : 'Sin Fecha'
+          td
+            a.btn.btn-primary.btn-sm(href=`/tareas/editar/${tarea._id}`) Editar
+            a.btn.btn-danger.btn-sm(href=`/tareas/eliminar/${tarea._id}`) Eliminar
+
+  // Mostrar mensajes flash si existen
+  if error_msg
+    p(style="color: red")= error_msg
+  if success_msg
+    p(style="color: green")= success_msg
+
+  // Formulario de filtros
+  form(action='/tareas', method='GET', class='filters-form')
+    div
+      label(for='estado') Estado:
+      select(name='estado', id='estado')
+        option(value='') Todos
+        each est in estados
+          option(value=est._id, selected=(filtros.estado == est._id.toString()))= est.nombre
+
+    div
+      label(for='prioridad') Prioridad:
+      select(name='prioridad', id='prioridad')
+        option(value='') Todos
+        each pri in prioridades
+          option(value=pri._id, selected=(filtros.prioridad == pri._id.toString()))= pri.nombre
+
+    div
+      label(for='fecha') Fecha de Vencimiento:
+      input(
+        type='date'
+        name='fecha'
+        id='fecha'
+        value=filtros.fecha || ''
+      )
+
+    div
+      button.btn.btn-primary(type='submit') Filtrar
+      a.btn.btn-secondary(href='/tareas') Limpiar Filtros
