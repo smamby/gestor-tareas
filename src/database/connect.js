@@ -3,10 +3,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/sistema-gestion-tareas', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect('mongodb://localhost:27017/sistema-gestion-tareas');
     console.log('MongoDB conectado');
   } catch (error) {
     console.error('Error al conectar a MongoDB:', error);
