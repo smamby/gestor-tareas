@@ -24,7 +24,7 @@ const UsuarioSchema = new mongoose.Schema({
   },
   departamento: {
     type: String,
-    enum: ['Compras', 'Ventas', 'Producción', 'Inventario'],
+    enum: ['Compras', 'Ventas', 'Produccion', 'Inventario'],
     required: true,
   },
 });

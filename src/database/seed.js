@@ -47,6 +47,20 @@ const seedData = async () => {
       });
     
       await admin.save();
+
+      // Crear un empleado
+      const salt2 = await bcrypt.genSalt(10);
+      const hashedPassword2 = await bcrypt.hash('123', salt2);
+    
+      const empleado = new Usuario({
+        nombre: 'Ernesto Garcia',
+        email: 'egarcia@gmail.com',
+        contraseña: '123', // Contraseña en texto plano,
+        rol: 'empleado',
+        departamento: 'Produccion',
+      });
+    
+      await empleado.save();
     
       console.log('Datos de Estados, Prioridades y Administrador insertados');
     } else {
