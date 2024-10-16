@@ -4,14 +4,44 @@ const Estado = require('../models/Estado');
 const Prioridad = require('../models/Prioridad');
 const Usuario = require('../models/Usuario');
 
-// Obtener todas las tareas
+//Obtener todas las tareas
 exports.getTareas = async (req, res) => {
   try {
     const tareas = await Tarea.find()
       .populate('estado')
       .populate('prioridad')
       .populate('usuarioAsignado');
+    console.log(tareas);
     res.render('tareas/listar', { titulo: 'Lista de Tareas', tareas });
+  } catch (error) {
+    console.error(error);
+    res.send('Error al obtener tareas');
+  }
+};
+// Obtener todas las tareas ordenadas por fecha
+let directionSort = -1;
+exports.getTareasOrdenadas = async (req, res) => {
+  const { sort } = req.query
+  
+  const estados = await Estado.find();
+  const prioridades = await Prioridad.find();
+
+  const filtros = {
+    estado: req.query.estado || '',
+    prioridad: req.query.prioridad || '',
+    fecha: req.query.fecha || ''
+  };
+
+  try {
+    
+    const tareas = await Tarea.find()
+    .populate('estado')
+    .populate('prioridad')
+    .populate('usuarioAsignado')
+    .sort({[sort]: (directionSort * -1)})
+    directionSort *= -1
+    //console.log(tareas);    
+    res.render('tareas/listar', { titulo: 'Lista de Tareas', tareas, estados, prioridades, filtros  });
   } catch (error) {
     console.error(error);
     res.send('Error al obtener tareas');

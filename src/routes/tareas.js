@@ -8,6 +8,9 @@ const { ensureAuthenticated, ensureAdmin } = require('../middleware/auth');
 // Obtener todas las tareas
 router.get('/', tareaController.getTareas);
 
+// Obtener tareas ordenadas
+router.get('/ordenadas', tareaController.getTareasOrdenadas);
+
 // Formulario para crear tarea
 router.get('/crear', tareaController.formCrearTarea);
 

@@ -1,0 +1,21 @@
+[{
+  "_id": {
+    "$oid": "6709bbcf68150c591ebd899c"
+  },
+  "nombre": "Pendiente",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6709bbcf68150c591ebd899d"
+  },
+  "nombre": "En Progreso",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6709bbcf68150c591ebd899e"
+  },
+  "nombre": "Completada",
+  "__v": 0
+}]

@@ -7,12 +7,12 @@ block content
   table
     thead
       tr
-        th Título
-        th Área
-        th Estado
-        th Prioridad
-        th Usuario Asignado
-        th Fecha de Vencimiento
+        th(onclick='location.href="/tareas/ordenadas?sort=titulo"') Título
+        th(onclick='location.href="/tareas/ordenadas?sort=area"') Área
+        th(onclick='location.href="/tareas/ordenadas?sort=estado"') Estado
+        th(onclick='location.href="/tareas/ordenadas?sort=prioridad"') Prioridad
+        th(onclick='location.href="/tareas/ordenadas?sort=usuarioAsignado"') Usuario Asignado
+        th(onclick='location.href="/tareas/ordenadas?sort=fechaVencimiento"') Fecha de Vencimiento
         th Acciones
     tbody
       each tarea in tareas
@@ -39,7 +39,7 @@ block content
       label(for='estado') Estado:
       select(name='estado', id='estado')
         option(value='') Todos
-        each est in estados
+        each est of estados
           option(value=est._id, selected=(filtros.estado == est._id.toString()))= est.nombre
 
     div
@@ -61,3 +61,5 @@ block content
     div
       button.btn.btn-primary(type='submit') Filtrar
       a.btn.btn-secondary(href='/tareas') Limpiar Filtros
+
+  

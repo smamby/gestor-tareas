@@ -1,0 +1,21 @@
+[{
+  "_id": {
+    "$oid": "6709bbcf68150c591ebd89a1"
+  },
+  "nombre": "Baja",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6709bbcf68150c591ebd89a2"
+  },
+  "nombre": "Media",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6709bbcf68150c591ebd89a3"
+  },
+  "nombre": "Alta",
+  "__v": 0
+}]

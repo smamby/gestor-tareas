@@ -1,0 +1,337 @@
+[{
+  "_id": {
+    "$oid": "670bccff3c84b944e2190b1c"
+  },
+  "area": "Compras",
+  "titulo": "Solicitud de cotización",
+  "descripcion": "Solicitud de cotizaciones para la compra de cartuchos de tinta",
+  "estado": {
+    "$oid": "6709bbcf68150c591ebd899c"
+  },
+  "prioridad": {
+    "$oid": "6709bbcf68150c591ebd89a2"
+  },
+  "usuarioAsignado": {
+    "$oid": "6709bbcf68150c591ebd89a7"
+  },
+  "fechaVencimiento": {
+    "$date": "2024-12-10T00:00:00.000Z"
+  },
+  "fechaCreacion": {
+    "$date": "2024-10-13T13:37:03.245Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670bcd5d3c84b944e2190b2d"
+  },
+  "area": "Compras",
+  "titulo": "Seguimiento Orden de Compra Papel",
+  "descripcion": "Seguimiento Orden de compra Papel para impresoras, entrega 11/10/24, consultar para cuándo estará",
+  "estado": {
+    "$oid": "6709bbcf68150c591ebd899d"
+  },
+  "prioridad": {
+    "$oid": "6709bbcf68150c591ebd89a3"
+  },
+  "usuarioAsignado": {
+    "$oid": "6709bbcf68150c591ebd89a7"
+  },
+  "fechaVencimiento": {
+    "$date": "2024-11-10T00:00:00.000Z"
+  },
+  "fechaCreacion": {
+    "$date": "2024-10-13T13:38:37.494Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670bd16600b5b6202ce634fc"
+  },
+  "area": "Producción",
+  "titulo": "Producción Software",
+  "descripcion": "Comenzar producción nuevo software para cliente ABC",
+  "estado": {
+    "$oid": "6709bbcf68150c591ebd899d"
+  },
+  "prioridad": {
+    "$oid": "6709bbcf68150c591ebd89a3"
+  },
+  "usuarioAsignado": {
+    "$oid": "6709bbcf68150c591ebd89a5"
+  },
+  "fechaVencimiento": {
+    "$date": "2025-01-15T00:00:00.000Z"
+  },
+  "fechaCreacion": {
+    "$date": "2024-10-13T13:55:50.054Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670bd05d00b5b6202ce634a6"
+  },
+  "area": "Compras",
+  "titulo": "Seguimiento Entrega Impresoras",
+  "descripcion": "Control entrega nuevas impresoras pactado para 12/10/24",
+  "estado": {
+    "$oid": "6709bbcf68150c591ebd899e"
+  },
+  "prioridad": {
+    "$oid": "6709bbcf68150c591ebd89a3"
+  },
+  "usuarioAsignado": {
+    "$oid": "6709bbcf68150c591ebd89a7"
+  },
+  "fechaVencimiento": {
+    "$date": "2024-10-12T00:00:00.000Z"
+  },
+  "fechaCreacion": {
+    "$date": "2024-10-13T13:51:25.554Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670dadcf60bc1439ac2b650b"
+  },
+  "Área": "Compras",
+  "Tarea": "Solicitar cotización para proveedor X",
+  "Responsable": "Juan Perez",
+  "Estado": "Pendiente",
+  "Prioridad": "Alta",
+  "area": "Ventas",
+  "descripcion": "Contactar compradores para nuevo programa",
+  "estado": {
+    "$oid": "6709bbcf68150c591ebd899d"
+  },
+  "fechaVencimiento": {
+    "$date": "2024-10-20T00:00:00.000Z"
+  },
+  "prioridad": {
+    "$oid": "6709bbcf68150c591ebd89a3"
+  },
+  "titulo": "Venta nuevo programa",
+  "usuarioAsignado": {
+    "$oid": "670d96dd7900903a488c6119"
+  }
+},
+{
+  "_id": {
+    "$oid": "670db8159e5a895ed0f1d82e"
+  },
+  "area": "Compras",
+  "titulo": "Solicitar cotización para proveedor X",
+  "descripcion": "Solicitar cotización para proveedor X",
+  "estado": {
+    "$oid": "6709bbcf68150c591ebd899c"
+  },
+  "prioridad": {
+    "$oid": "6709bbcf68150c591ebd89a3"
+  },
+  "usuarioAsignado": {
+    "$oid": "670da1ea22cdf73660953e0e"
+  },
+  "fechaVencimiento": {
+    "$date": "2024-10-25T00:00:00.000Z"
+  },
+  "fechaCreacion": {
+    "$date": "2024-10-15T00:32:21.996Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670db88e9e5a895ed0f1d8be"
+  },
+  "area": "Compras",
+  "titulo": "Gestión de órdenes de compra para el mes próximo",
+  "descripcion": "Gestión de órdenes de compra para el mes próximo",
+  "estado": {
+    "$oid": "6709bbcf68150c591ebd899d"
+  },
+  "prioridad": {
+    "$oid": "6709bbcf68150c591ebd89a2"
+  },
+  "usuarioAsignado": {
+    "$oid": "670d96b17900903a488c6116"
+  },
+  "fechaVencimiento": {
+    "$date": "2024-10-15T00:00:00.000Z"
+  },
+  "fechaCreacion": {
+    "$date": "2024-10-15T00:34:22.923Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670db8f09e5a895ed0f1d8d4"
+  },
+  "area": "Compras",
+  "titulo": "Seguimiento de entrega de insumos de oficina",
+  "descripcion": "Seguimiento de entrega de insumos de oficina",
+  "estado": {
+    "$oid": "6709bbcf68150c591ebd899e"
+  },
+  "prioridad": {
+    "$oid": "6709bbcf68150c591ebd89a1"
+  },
+  "usuarioAsignado": {
+    "$oid": "670d96dd7900903a488c6119"
+  },
+  "fechaVencimiento": {
+    "$date": "2024-10-14T00:00:00.000Z"
+  },
+  "fechaCreacion": {
+    "$date": "2024-10-15T00:36:00.341Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670db9309e5a895ed0f1d8df"
+  },
+  "area": "Ventas",
+  "titulo": "Cierre de venta con cliente Y",
+  "descripcion": "Cierre de venta con cliente Y",
+  "estado": {
+    "$oid": "6709bbcf68150c591ebd899d"
+  },
+  "prioridad": {
+    "$oid": "6709bbcf68150c591ebd89a3"
+  },
+  "usuarioAsignado": {
+    "$oid": "670d96f47900903a488c611c"
+  },
+  "fechaVencimiento": {
+    "$date": "2024-11-01T00:00:00.000Z"
+  },
+  "fechaCreacion": {
+    "$date": "2024-10-15T00:37:04.974Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670dba419e5a895ed0f1d8ea"
+  },
+  "area": "Producción",
+  "titulo": "Planificación de producción para noviembre",
+  "descripcion": "Planificación de producción para noviembre",
+  "estado": {
+    "$oid": "6709bbcf68150c591ebd899e"
+  },
+  "prioridad": {
+    "$oid": "6709bbcf68150c591ebd89a3"
+  },
+  "usuarioAsignado": {
+    "$oid": "670d97587900903a488c6125"
+  },
+  "fechaVencimiento": {
+    "$date": "2024-10-01T00:00:00.000Z"
+  },
+  "fechaCreacion": {
+    "$date": "2024-10-15T00:41:37.773Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670dbadb9e5a895ed0f1d8f5"
+  },
+  "area": "Producción",
+  "titulo": "Planificación de producción para noviembre",
+  "descripcion": "Planificación de producción para noviembre",
+  "estado": {
+    "$oid": "6709bbcf68150c591ebd899c"
+  },
+  "prioridad": {
+    "$oid": "6709bbcf68150c591ebd89a2"
+  },
+  "usuarioAsignado": {
+    "$oid": "670d97927900903a488c612b"
+  },
+  "fechaVencimiento": {
+    "$date": "2024-10-18T00:00:00.000Z"
+  },
+  "fechaCreacion": {
+    "$date": "2024-10-15T00:44:11.370Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670dbb439e5a895ed0f1d900"
+  },
+  "area": "Inventario",
+  "titulo": "Coordinación de reposición de producto Z",
+  "descripcion": "Coordinación de reposición de producto Z",
+  "estado": {
+    "$oid": "6709bbcf68150c591ebd899c"
+  },
+  "prioridad": {
+    "$oid": "6709bbcf68150c591ebd89a3"
+  },
+  "usuarioAsignado": {
+    "$oid": "670d97ac7900903a488c612e"
+  },
+  "fechaVencimiento": {
+    "$date": "2024-10-15T00:00:00.000Z"
+  },
+  "fechaCreacion": {
+    "$date": "2024-10-15T00:45:55.898Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670dbbe49e5a895ed0f1d90b"
+  },
+  "area": "Inventario",
+  "titulo": "Planificación de inventario físico",
+  "descripcion": "Planificación de inventario físico",
+  "estado": {
+    "$oid": "6709bbcf68150c591ebd899e"
+  },
+  "prioridad": {
+    "$oid": "6709bbcf68150c591ebd89a2"
+  },
+  "usuarioAsignado": {
+    "$oid": "670d97d77900903a488c6131"
+  },
+  "fechaVencimiento": {
+    "$date": "2024-10-01T00:00:00.000Z"
+  },
+  "fechaCreacion": {
+    "$date": "2024-10-15T00:48:36.645Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670dbc0c9e5a895ed0f1d916"
+  },
+  "area": "Inventario",
+  "titulo": "Monitoreo de niveles de stock de insumos críticos",
+  "descripcion": "Monitoreo de niveles de stock de insumos críticos",
+  "estado": {
+    "$oid": "6709bbcf68150c591ebd899d"
+  },
+  "prioridad": {
+    "$oid": "6709bbcf68150c591ebd89a3"
+  },
+  "usuarioAsignado": {
+    "$oid": "670d97f57900903a488c6134"
+  },
+  "fechaVencimiento": {
+    "$date": "2024-10-18T00:00:00.000Z"
+  },
+  "fechaCreacion": {
+    "$date": "2024-10-15T00:49:16.240Z"
+  },
+  "__v": 0
+}]

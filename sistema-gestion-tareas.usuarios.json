@@ -1,0 +1,164 @@
+[{
+  "_id": {
+    "$oid": "6709bbcf68150c591ebd89a5"
+  },
+  "nombre": "Administrador",
+  "email": "admin@example.com",
+  "contraseña": "$2a$10$9VNDCsvvaDOo9lM8cqjAc.N9G/TX8rRf8.qIoK/lKcWJ4bES6AziO",
+  "rol": "administrador",
+  "departamento": "Ventas",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6709bbcf68150c591ebd89a7"
+  },
+  "nombre": "Ernesto Garcia",
+  "email": "egarcia@gmail.com",
+  "contraseña": "$2a$10$7vP6G7ROdOzEgvkCL3hoCOmsVmxb0RrruSRPZZFm1r3l9DLME7Fi2",
+  "rol": "empleado",
+  "departamento": "Produccion",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670d96b17900903a488c6116"
+  },
+  "nombre": "Laura Martinez",
+  "email": "lmartinez@example.com",
+  "contraseña": "$2a$10$iQEDWikZgUtW2pwZAdr7ueQIZKiQcVTAFT.0a0e.6QYI0E8pw8KVa",
+  "rol": "empleado",
+  "departamento": "Compras",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670d96dd7900903a488c6119"
+  },
+  "nombre": "Pedro Fernandez",
+  "email": "pfernandez@example.com",
+  "contraseña": "$2a$10$S/tmUyza.DsQGkWe2GqXmeKGjVzrMIm4Nfdq7jHE.kIcS9x7r9YPG",
+  "rol": "empleado",
+  "departamento": "Compras",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670d96f47900903a488c611c"
+  },
+  "nombre": "Ana Gomez",
+  "email": "agomez@example.com",
+  "contraseña": "$2a$10$e0FppD0XVWEBMQvKYWtnqOeHoV/KGd0kV90gND2XpxIPdqWSivzDK",
+  "rol": "empleado",
+  "departamento": "Ventas",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670d971e7900903a488c611f"
+  },
+  "nombre": "Luis Ramirez",
+  "email": "lramirez@example.com",
+  "contraseña": "$2a$10$aO4A66jQucG2qcLWM1XnmeEuqKU5Ovp60iPi6r.mncmv.PBglI1q2",
+  "rol": "empleado",
+  "departamento": "Ventas",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670d97407900903a488c6122"
+  },
+  "nombre": "Carla Torres",
+  "email": "ctorres@example.com",
+  "contraseña": "$2a$10$75ZKq9O2Igf03oOPr0sshOy9ZiXmSkvJJ0sdhX3fQJhuxP8SQp52W",
+  "rol": "empleado",
+  "departamento": "Ventas",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670d97587900903a488c6125"
+  },
+  "nombre": "Carlos Lopez",
+  "email": "clopez@example.com",
+  "contraseña": "$2a$10$KBp04J8tSn9db3ZKzYUcnO7/0lt0dzCnXLajmQdPNVxYCy0MtxUCm",
+  "rol": "empleado",
+  "departamento": "Produccion",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670d97757900903a488c6128"
+  },
+  "nombre": "Elena Rodriguez",
+  "email": "erodriguez@example.com",
+  "contraseña": "$2a$10$2M.05a9Tj/FpUZZfl9agu.8M5KUw4YoKU4DTPpQuqqeeFEkNPqacO",
+  "rol": "empleado",
+  "departamento": "Produccion",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670d97927900903a488c612b"
+  },
+  "nombre": "Roberto Silva",
+  "email": "rsilva@example.com",
+  "contraseña": "$2a$10$kLKYULQiUh6lohoQxAePqOqHpEvFMQUVvSZnGz766xzByHlaTZLDi",
+  "rol": "empleado",
+  "departamento": "Produccion",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670d97ac7900903a488c612e"
+  },
+  "nombre": "Marta Sanchez",
+  "email": "msanchez@example.com",
+  "contraseña": "$2a$10$HIAXJSPj/zU/aTqgcUaU4OgwUoUtBRnd8buhEVtif4M82k7P/x7mi",
+  "rol": "empleado",
+  "departamento": "Inventario",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670d97d77900903a488c6131"
+  },
+  "nombre": "Javier Castillo",
+  "email": "jcastillo@example.com",
+  "contraseña": "$2a$10$QQmnIBcKH99uJwbjiN.dee1I28ThxD8Pp6WdeN4yzU41ZeKNCHRTO",
+  "rol": "empleado",
+  "departamento": "Inventario",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670d97f57900903a488c6134"
+  },
+  "nombre": "Sofia Lopez",
+  "email": "slopez@example.com",
+  "contraseña": "$2a$10$G58iRSE9J55m79h1q.uJJuNjViwbMZn8MtS.PXZMhw4n2.cjeKA9O",
+  "rol": "empleado",
+  "departamento": "Inventario",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670da1ea22cdf73660953e0e"
+  },
+  "nombre": "Jorge Martinez",
+  "email": "jmartinez@example.com",
+  "contraseña": "$2a$10$NQHnOS4MW5.O6p2smntzPeAoZkBGVLVCY6jOQWXQ6XpwNCAkoQt8S",
+  "rol": "empleado",
+  "departamento": "Compras",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670dae1560bc1439ac2b6520"
+  },
+  "Nombre": "Administrador",
+  "Email": "admin@example.com",
+  "Contraseña": "admin123",
+  "Rol": "administrador",
+  "Departamento": "Ventas"
+}]
