@@ -7,12 +7,14 @@ block content
     label(for='titulo') Título:
     input(type='text', name='titulo', id='titulo', required)
     
-    label(for='area') Área:
-    select(name='area', id='area', required)
-      option(value='Compras') Compras
-      option(value='Ventas') Ventas
-      option(value='Producción') Producción
-      option(value='Inventario') Inventario
+    //- label(for='area') Area:
+    //- select(name='area', id='area', required)
+    //-   option(value='') Sin Area
+    //-   each area in areas
+    //-     option(value=area._id)= area.nombre
+    
+    label(for='tarea_padre') Tarea padre:
+    input(type='text', name='tarea_padre', id='tarea_padre')
     
     label(for='descripcion') Descripción:
     textarea(name='descripcion', id='descripcion')
@@ -29,13 +31,55 @@ block content
       each prioridad in prioridades
         option(value=prioridad._id)= prioridad.nombre
     
+    //- label(for='usuarioResponsable') Usuario Responsable:
+    //- select(name='usuarioResponsable', id='usuarioResponsable')
+    //-   option(value='') Sin Asignar
+    //-   each usuario in usuarios
+    //-     option(value=usuario._id)= usuario.nombre
+
     label(for='usuarioAsignado') Usuario Asignado:
     select(name='usuarioAsignado', id='usuarioAsignado')
       option(value='') Sin Asignar
       each usuario in usuarios
         option(value=usuario._id)= usuario.nombre
     
+
+    div
+      h3 Roles con Permiso
+
+      div
+        label(for='roles_con_permiso.modificar') Permisos para modificar tarea
+        select(name='roles_con_permiso.modificar', id='roles_con_permiso.modificar')
+          option(value='') Sin Asignar
+          each rol in roles
+            option(value=rol._id)= rol.nombre 
+      
+      div
+        label(for='roles_con_permiso.avance') Permisos para registrar avance
+        select(name='roles_con_permiso.avance', id='roles_con_permiso.avance')
+          option(value='') Sin Asignar
+          each usuario in usuarios
+            option(value=usuario._id)= usuario.nombre
+      
+      div
+        label(for='roles_con_permiso.caducar') Permisos para caducar Tarea
+        select(name='roles_con_permiso.caducar', id='roles_con_permiso.caducar')
+          option(value='') Sin Asignar
+          each rol in roles
+            option(value=rol._id)= rol.nombre
+    
     label(for='fechaVencimiento') Fecha de Vencimiento:
     input(type='date', name='fechaVencimiento', id='fechaVencimiento')
+
+    //- div
+    //-   h3 Avance 
+    //-   div 
+    //-     label(for='descripcion_avance') Descripcion de avance
+    //-     textarea(name='avance.descripcion_avance', id='descripcion_avance')
+
+    //-     lavel(for='avance.fecha_avance') Fecha avance
+    //-     input(type='date', name='avance.fecha_avance', id='fecha_avance')
+
+
     
     button(type='submit') Crear Tarea

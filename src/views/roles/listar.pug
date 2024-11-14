@@ -1,0 +1,19 @@
+//- src/views/roles/listar.pug
+extends ../layout
+
+block content
+  h1= titulo
+  a.btn.btn-primary(href='/roles/crear') Crear Nuevo Rol
+  table   
+    thead
+      tr
+        th Rol
+        th Area
+    tbody
+      each rol in roles
+        tr
+          td= rol.nombre 
+          td= rol.area
+          td
+            a.btn.btn-primary.btn-sm(href=`/roles/editar/${rol._id}`) Editar
+            a.btn.btn-danger.btn-sm(href=`/roles/eliminar/${rol._id}`) Eliminar

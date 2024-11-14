@@ -1,0 +1,17 @@
+//- src/views/roles/crear_rol.pug
+extends ../layout
+
+block content
+  h1= titulo
+  form(action='/roles/crear', method='POST')
+    label(for='nombre') Nombre:
+    input(type='text', name='nombre', id='nombre', required)
+    
+    label(for='area') Area:
+    select(name='area', id='area', required)
+      option(value='') Sin Area
+      each area in areas
+        option(value=area._id)= area.nombre
+
+    button(type='submit') Crear Tarea
+

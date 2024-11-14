@@ -3,6 +3,8 @@ const Tarea = require('../models/Tarea');
 const Estado = require('../models/Estado');
 const Prioridad = require('../models/Prioridad');
 const Usuario = require('../models/Usuario');
+const Area = require('../models/Area');
+const Rol = require('../models/Rol');
 
 //Obtener todas las tareas
 exports.getTareas = async (req, res) => {
@@ -10,7 +12,10 @@ exports.getTareas = async (req, res) => {
     const tareas = await Tarea.find()
       .populate('estado')
       .populate('prioridad')
-      .populate('usuarioAsignado');
+      .populate('usuarioAsignado')
+      // .populate('usuarioResponsable')
+      .populate('area')
+      .populate('rol');
     console.log(tareas);
     res.render('tareas/listar', { titulo: 'Lista de Tareas', tareas });
   } catch (error) {
@@ -18,6 +23,7 @@ exports.getTareas = async (req, res) => {
     res.send('Error al obtener tareas');
   }
 };
+
 // Obtener todas las tareas ordenadas por fecha
 let directionSort = -1;
 exports.getTareasOrdenadas = async (req, res) => {
@@ -32,15 +38,13 @@ exports.getTareasOrdenadas = async (req, res) => {
     fecha: req.query.fecha || ''
   };
 
-  try {
-    
+  try {    
     const tareas = await Tarea.find()
     .populate('estado')
     .populate('prioridad')
     .populate('usuarioAsignado')
-    .sort({[sort]: (directionSort * -1)})
-    directionSort *= -1
-    //console.log(tareas);    
+    .sort({[sort]: (directionSort * -1)});
+    directionSort *= -1; 
     res.render('tareas/listar', { titulo: 'Lista de Tareas', tareas, estados, prioridades, filtros  });
   } catch (error) {
     console.error(error);
@@ -54,11 +58,15 @@ exports.formCrearTarea = async (req, res) => {
     const estados = await Estado.find();
     const prioridades = await Prioridad.find();
     const usuarios = await Usuario.find();
+    const areas = await Area.find();
+    const roles = await Rol.find();
     res.render('tareas/crear', {
       titulo: 'Crear Tarea',
       estados,
       prioridades,
       usuarios,
+      areas,
+      roles,
     });
   } catch (error) {
     console.error(error);
@@ -68,17 +76,21 @@ exports.formCrearTarea = async (req, res) => {
 
 // Crear nueva tarea
 exports.crearTarea = async (req, res) => {
-  const { area, titulo, descripcion, estado, prioridad, usuarioAsignado, fechaVencimiento } = req.body;
+  const { titulo, tareaPadre, descripcion, estado, prioridad, usuarioAsignado, roles_con_permiso,
+    fechaVencimiento } = req.body;
 
   try {
     const nuevaTarea = new Tarea({
-      area,
+      area: req.session.user.area,
       titulo,
       descripcion,
+      tarea_padre: tareaPadre,
       estado: estado || null,
       prioridad: prioridad || null,
       usuarioAsignado: usuarioAsignado || null,
-      fechaVencimiento,
+      usuarioResponsable: req.session.user.nombre,
+      roles_con_permiso: roles_con_permiso,
+      fechaVencimiento
     });
 
     await nuevaTarea.save();

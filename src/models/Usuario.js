@@ -2,7 +2,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const UsuarioSchema = new mongoose.Schema({
+const Schema = mongoose.Schema
+const UsuarioSchema = new Schema({
   nombre: {
     type: String,
     required: true,
@@ -18,13 +19,13 @@ const UsuarioSchema = new mongoose.Schema({
     required: true,
   },
   rol: {
-    type: String,
-    enum: ['administrador', 'empleado'],
-    default: 'empleado',
+    type: Schema.Types.ObjectId, 
+    ref: 'Rol',
+    required: true,
   },
   departamento: {
-    type: String,
-    enum: ['Compras', 'Ventas', 'Produccion', 'Inventario'],
+    type: Schema.Types.ObjectId, 
+    ref: 'Area',
     required: true,
   },
 });

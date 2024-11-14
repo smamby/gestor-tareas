@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const tareaController = require('../controllers/tareaController');
-const { ensureAuthenticated, ensureAdmin } = require('../middleware/auth');
+const { ensureAuthenticated, ensureAdmin, checkUserRole } = require('../middleware/auth');
 
 
 // Obtener todas las tareas

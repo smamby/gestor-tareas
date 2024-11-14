@@ -10,7 +10,7 @@ exports.login = async (req, res) => {
   const { email, contraseña } = req.body;
 
   try {
-    const usuario = await Usuario.findOne({ email });
+    const usuario = await Usuario.findOne({ email }).populate('rol');
     if (!usuario) {
       req.flash('error_msg', 'Credenciales inválidas');
       return res.redirect('/auth/login');
@@ -27,6 +27,7 @@ exports.login = async (req, res) => {
       id: usuario._id,
       nombre: usuario.nombre,
       email: usuario.email,
+      area: usuario.departamento,
       rol: usuario.rol,
     };
 
