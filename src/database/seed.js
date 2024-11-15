@@ -11,7 +11,7 @@ const bcrypt = require('bcryptjs');
 const seedData = async () => {
   await connectDB();
 
-  const admExist = async () => await Usuario.findOne({nombre: 'administrador'});
+  const admExist = async () => await Usuario.findOne({nombre: 'Administrador'});
   const initDB = async () => {
     const inicializedDB = await admExist()
     console.log('admExist: ', inicializedDB );
@@ -51,7 +51,7 @@ const seedData = async () => {
       const todasAreaId = areas.find(area => area.nombre === 'Todas')._id;
       // Insertar Roles
       const roles = await Rol.insertMany([
-        { nombre: 'Empleado', area: ventasAreaId},
+        { nombre: 'Empleado', area: produccionAreaId},
         { nombre: 'Jefe de grupo', area: produccionAreaId },
         { nombre: 'Gerente de area', area: comprasAreaId },
         { nombre: 'Administrador', area: todasAreaId },
@@ -66,7 +66,7 @@ const seedData = async () => {
         email: 'admin@example.com',
         contraseña: 'admin123', // Contraseña en texto plano,
         rol: andminRol._id,
-        departamento: todasAreaId,
+        area: todasAreaId,
       });
     
       await admin.save();
@@ -80,7 +80,7 @@ const seedData = async () => {
         email: 'egarcia@gmail.com',
         contraseña: '123', // Contraseña en texto plano,
         rol: empleadoRol._id,
-        departamento: produccionAreaId,
+        area: produccionAreaId,
       });
 
       await empleado.save();
@@ -88,13 +88,13 @@ const seedData = async () => {
       // Crear un empleado 2
       const salt3 = await bcrypt.genSalt(10);
       const hashedPassword3 = await bcrypt.hash('123', salt2);
-      const empleadoRol2 = await Rol.findOne( {nombre: 'Jefe de grupo'} );
+      const empleadoRol2 = await Rol.findOne( {nombre: 'Gerente de area'} );
       const empleado2 = new Usuario({
         nombre: 'Carla Paez',
         email: 'carpa@gmail.com',
         contraseña: '123', // Contraseña en texto plano,
         rol: empleadoRol2._id,
-        departamento: comprasAreaId,
+        area: comprasAreaId,
       });
     
       await empleado2.save();

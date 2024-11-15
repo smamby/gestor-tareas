@@ -19,11 +19,11 @@ block content
     label(for='descripcion') Descripción:
     textarea(name='descripcion', id='descripcion')
     
-    label(for='estado') Estado:
-    select(name='estado', id='estado')
-      option(value='') Sin Estado
-      each estado in estados
-        option(value=estado._id)= estado.nombre
+    label(for='estado') Estado: 'Inicializada'
+    //- select(name='estado', id='estado')
+    //-   option(value='') Sin Estado
+    //-   each estado in estados
+    //-     option(value=estado._id)= estado.nombre
     
     label(for='prioridad') Prioridad:
     select(name='prioridad', id='prioridad')
@@ -44,32 +44,34 @@ block content
         option(value=usuario._id)= usuario.nombre
     
 
-    div
-      h3 Roles con Permiso
+    
+    h3 Roles con Permiso
 
-      div
-        label(for='roles_con_permiso.modificar') Permisos para modificar tarea
-        select(name='roles_con_permiso.modificar', id='roles_con_permiso.modificar')
-          option(value='') Sin Asignar
-          each rol in roles
-            option(value=rol._id)= rol.nombre 
+    div
+      label(for='roles_con_permiso.modificar') Permisos para modificar tarea (usa 'ctrl' para sumar selecciones)
+      select(name='roles_con_permiso.modificar[]', id='roles_con_permiso.modificar', multiple)
+        option(value='') Sin Asignar
+        each rol in roles
+          option(value=rol._id)= rol.nombre 
       
-      div
-        label(for='roles_con_permiso.avance') Permisos para registrar avance
-        select(name='roles_con_permiso.avance', id='roles_con_permiso.avance')
-          option(value='') Sin Asignar
-          each usuario in usuarios
-            option(value=usuario._id)= usuario.nombre
+    div
+      label(for='roles_con_permiso.avance') Permisos para registrar avance  (usa 'ctrl' para sumar selecciones)
+      select(name='roles_con_permiso.avance[]', id='roles_con_permiso.avance', multiple)
+        option(value='') Sin Asignar
+        each usuario in usuarios
+          option(value=usuario._id)= usuario.nombre
       
-      div
-        label(for='roles_con_permiso.caducar') Permisos para caducar Tarea
-        select(name='roles_con_permiso.caducar', id='roles_con_permiso.caducar')
-          option(value='') Sin Asignar
-          each rol in roles
-            option(value=rol._id)= rol.nombre
+    div
+      label(for='roles_con_permiso.caducar') Permisos para caducar Tarea (usa 'ctrl' para sumar selecciones)
+      select(name='roles_con_permiso.caducar[]', id='roles_con_permiso.caducar', multiple)
+        option(value='') Sin Asignar
+        each rol in roles
+          option(value=rol._id)= rol.nombre
     
     label(for='fechaVencimiento') Fecha de Vencimiento:
     input(type='date', name='fechaVencimiento', id='fechaVencimiento')
+
+    button(type='submit') Crear Tarea
 
     //- div
     //-   h3 Avance 
@@ -82,4 +84,4 @@ block content
 
 
     
-    button(type='submit') Crear Tarea
+    

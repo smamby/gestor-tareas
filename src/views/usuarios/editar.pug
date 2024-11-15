@@ -18,11 +18,11 @@ block content
       option(value='empleado', selected=usuario.rol === 'empleado') Empleado
       option(value='administrador', selected=usuario.rol === 'administrador') Administrador
     
-    label(for='departamento') Departamento:
-    select(name='departamento', id='departamento', required)
-      option(value='Compras', selected=usuario.departamento === 'Compras') Compras
-      option(value='Ventas', selected=usuario.departamento === 'Ventas') Ventas
-      option(value='Producción', selected=usuario.departamento === 'Producción') Producción
-      option(value='Inventario', selected=usuario.departamento === 'Inventario') Inventario
+    label(for='area') Departamento:
+    select(name='area', id='area', required)
+      option(value='Compras', selected=usuario.area === 'Compras') Compras
+      option(value='Ventas', selected=usuario.area === 'Ventas') Ventas
+      option(value='Producción', selected=usuario.area === 'Producción') Producción
+      option(value='Inventario', selected=usuario.area === 'Inventario') Inventario
     
     button(type='submit') Actualizar Usuario

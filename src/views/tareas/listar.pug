@@ -18,7 +18,7 @@ block content
       each tarea in tareas
         tr
           td= tarea.titulo
-          td= tarea.area
+          td= tarea.area ? tarea.area.nombre : 'Sin Area'
           td= tarea.estado ? tarea.estado.nombre : 'Sin Estado'
           td= tarea.prioridad ? tarea.prioridad.nombre : 'Sin Prioridad'
           td= tarea.usuarioAsignado ? tarea.usuarioAsignado.nombre : 'Sin Asignar'

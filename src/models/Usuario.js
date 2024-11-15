@@ -23,7 +23,7 @@ const UsuarioSchema = new Schema({
     ref: 'Rol',
     required: true,
   },
-  departamento: {
+  area: {
     type: Schema.Types.ObjectId, 
     ref: 'Area',
     required: true,

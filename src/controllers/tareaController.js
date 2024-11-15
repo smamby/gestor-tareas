@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 // src/controllers/tareaController.js
 const Tarea = require('../models/Tarea');
 const Estado = require('../models/Estado');
@@ -10,12 +11,10 @@ const Rol = require('../models/Rol');
 exports.getTareas = async (req, res) => {
   try {
     const tareas = await Tarea.find()
-      .populate('estado')
-      .populate('prioridad')
-      .populate('usuarioAsignado')
-      // .populate('usuarioResponsable')
-      .populate('area')
-      .populate('rol');
+    .populate('estado', 'nombre')
+    .populate('prioridad', 'nombre')
+    .populate('usuarioAsignado', 'nombre')
+    .populate('area', 'nombre')
     console.log(tareas);
     res.render('tareas/listar', { titulo: 'Lista de Tareas', tareas });
   } catch (error) {
@@ -24,7 +23,7 @@ exports.getTareas = async (req, res) => {
   }
 };
 
-// Obtener todas las tareas ordenadas por fecha
+// Obtener todas las tareas ordenadas
 let directionSort = -1;
 exports.getTareasOrdenadas = async (req, res) => {
   const { sort } = req.query
@@ -43,8 +42,10 @@ exports.getTareasOrdenadas = async (req, res) => {
     .populate('estado')
     .populate('prioridad')
     .populate('usuarioAsignado')
+    .populate('area')
     .sort({[sort]: (directionSort * -1)});
     directionSort *= -1; 
+    console.log(tareas);
     res.render('tareas/listar', { titulo: 'Lista de Tareas', tareas, estados, prioridades, filtros  });
   } catch (error) {
     console.error(error);
@@ -76,25 +77,38 @@ exports.formCrearTarea = async (req, res) => {
 
 // Crear nueva tarea
 exports.crearTarea = async (req, res) => {
-  const { titulo, tareaPadre, descripcion, estado, prioridad, usuarioAsignado, roles_con_permiso,
+  const { titulo, tarea_padre, descripcion, prioridad, usuarioAsignado,
     fechaVencimiento } = req.body;
 
+  console.log('Request Body:', req.body);
+  const roles_con_permiso = {
+    modificar: req.body['roles_con_permiso.modificar']
+      ? req.body['roles_con_permiso.modificar'].map(id => new mongoose.Types.ObjectId(id))
+      : [],
+    avance: req.body['roles_con_permiso.avance']
+      ? req.body['roles_con_permiso.avance'].map(id => new mongoose.Types.ObjectId(id))
+      : [],
+    caducar: req.body['roles_con_permiso.caducar']
+      ? req.body['roles_con_permiso.caducar'].map(id => new mongoose.Types.ObjectId(id))
+      : [],
+  };
   try {
     const nuevaTarea = new Tarea({
+      
       area: req.session.user.area,
       titulo,
       descripcion,
-      tarea_padre: tareaPadre,
-      estado: estado || null,
+      tarea_padre: tarea_padre,
+      estado: await Estado.findOne({nombre: 'Inicializada'}),
       prioridad: prioridad || null,
       usuarioAsignado: usuarioAsignado || null,
-      usuarioResponsable: req.session.user.nombre,
-      roles_con_permiso: roles_con_permiso,
-      fechaVencimiento
+      usuarioResponsable: req.session.user.id,
+      roles_con_permiso,
+      fechaVencimiento,
     });
-
+    console.log('nuevatarea: ', nuevaTarea)
     await nuevaTarea.save();
-    res.redirect('/tareas');
+    res.redirect('/tareas/ordenadas');
   } catch (error) {
     console.error(error);
     res.send('Error al crear tarea');

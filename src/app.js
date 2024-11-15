@@ -15,8 +15,8 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: true })); //cambie de false a true
 app.use(bodyParser.json());
 
 // Configurar Pug

@@ -4,18 +4,18 @@ const Rol = require('../models/Rol');
 
 //Obtener todas los roles
 exports.getRoles = async (req, res) => {
-    try {
-      const roles = await Rol.find()
-        .populate('area');
-      console.log(roles);
-      res.render('roles/listar', { titulo: 'Lista de Roles', roles });
-    } catch (error) {
-      console.error(error);
-      res.send('Error al obtener roles');
-    }
-  };
+  try {
+    const roles = await Rol.find()
+      .populate('area');
+    console.log(roles);
+    res.render('roles/listar', { titulo: 'Lista de Roles', roles });
+  } catch (error) {
+    console.error(error);
+    res.send('Error al obtener roles');
+  }
+};
 
-  // Formulario para crear tarea
+// Formulario para crear tarea
 exports.formCrearRol = async (req, res) => {
     try {
       const areas = await Area.find();

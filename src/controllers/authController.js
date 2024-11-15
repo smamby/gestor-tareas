@@ -2,6 +2,7 @@
 const Usuario = require('../models/Usuario');
 
 
+
 exports.formLogin = (req, res) => {
   res.render('login', { titulo: 'Iniciar Sesión' });
 };
@@ -10,7 +11,7 @@ exports.login = async (req, res) => {
   const { email, contraseña } = req.body;
 
   try {
-    const usuario = await Usuario.findOne({ email }).populate('rol');
+    const usuario = await Usuario.findOne({ email }).populate('rol').populate('area');
     if (!usuario) {
       req.flash('error_msg', 'Credenciales inválidas');
       return res.redirect('/auth/login');
@@ -27,9 +28,10 @@ exports.login = async (req, res) => {
       id: usuario._id,
       nombre: usuario.nombre,
       email: usuario.email,
-      area: usuario.departamento,
-      rol: usuario.rol,
+      area: usuario.area._id,
+      rol: usuario.rol._id,
     };
+    console.log('User_session: ', req.session.user.area._id)
 
     req.flash('success_msg', 'Inicio de sesión exitoso');
     res.redirect('/dashboard');

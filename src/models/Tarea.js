@@ -6,8 +6,8 @@ const TareaSchema = new Schema({
   area: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Area',
-    default: null,
     required: true,
+    default: null,
   },
   titulo: {
     type: String,
@@ -40,7 +40,7 @@ const TareaSchema = new Schema({
     modificar: [{ type: Schema.Types.ObjectId, ref: 'Rol' , required: true }],
     avance: [{ type: Schema.Types.ObjectId, ref: 'Usuario' , required: true }],
     caducar: [{ type: Schema.Types.ObjectId, ref: 'Rol' , required: true }],
-    borrar: { type: String, enum: ['administrador'], default: 'administrador' }, 
+    borrar: { type: String, enum: ['Administrador'], default: 'Administrador' }, 
   },
   fechaCreacion: {
     type: Date,

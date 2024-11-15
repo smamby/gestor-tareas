@@ -10,7 +10,7 @@ block content
         th Nombre
         th Email
         th Rol
-        th Departamento
+        th Area
         th Acciones
     tbody
       each usuario in usuarios
@@ -18,7 +18,7 @@ block content
           td= usuario.nombre
           td= usuario.email
           td= usuario.rol
-          td= usuario.departamento
+          td= usuario.area
           td
             a.btn.btn-primary.btn-sm(href=`/usuarios/editar/${usuario._id}`) Editar
             a.btn.btn-danger.btn-sm(href=`/usuarios/eliminar/${usuario._id}`) Eliminar
