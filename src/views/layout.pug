@@ -10,7 +10,7 @@ html
         ul
           if user
             li: a.btn.btn-primary(href='/dashboard') Dashboard
-            if user.rol.nombre === 'Administrador'
+            if user.rolName === 'Administrador'
               li: a.btn.btn-primary(href='/usuarios') Usuarios
               li: a.btn.btn-primary(href='/roles') Roles
               li: a.btn.btn-primary(href='/tareas') Tareas

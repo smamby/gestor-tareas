@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const tareaController = require('../controllers/tareaController');
-//const { ensureAuthenticated, ensureAdmin, checkUserRole } = require('../middleware/auth');
+const { ensureAuthenticated, ensureAdmin, checkUserRole } = require('../middleware/auth');
 
 
 // Obtener todas las tareas
@@ -18,10 +18,16 @@ router.get('/crear', tareaController.formCrearTarea);
 router.get('/', tareaController.getTareas);
 
 // Todas las rutas de tareas requieren autenticación
-//router.use(ensureAuthenticated);
+router.use(ensureAuthenticated);
 
 // Crear nueva tarea
 router.post('/crear', tareaController.crearTarea);
+
+// Formulario para avance tarea
+router.get('/avance/:id', tareaController.formAvanceTarea);
+
+// Avance tarea
+router.post('/avance/:id', tareaController.avanceTarea);
 
 // Formulario para editar tarea
 router.get('/editar/:id', tareaController.formEditarTarea);

@@ -11,10 +11,10 @@ const Rol = require('../models/Rol');
 exports.getTareas = async (req, res) => {
   try {
     const tareas = await Tarea.find()
+    .populate('area', 'nombre')
     .populate('estado', 'nombre')
     .populate('prioridad', 'nombre')
-    .populate('usuarioAsignado', 'nombre')
-    .populate('area', 'nombre')
+    .populate('usuarioAsignado', 'nombre')    
     console.log(tareas);
     res.render('tareas/listar', { titulo: 'Lista de Tareas', tareas });
   } catch (error) {
@@ -26,6 +26,7 @@ exports.getTareas = async (req, res) => {
 // Obtener todas las tareas ordenadas
 let directionSort = -1;
 exports.getTareasOrdenadas = async (req, res) => {
+  console.log('req.session.user: ', req.session.user);
   const { sort } = req.query
   
   const estados = await Estado.find();
@@ -80,7 +81,7 @@ exports.crearTarea = async (req, res) => {
   const { titulo, tarea_padre, descripcion, prioridad, usuarioAsignado,
     fechaVencimiento } = req.body;
 
-  console.log('Request Body:', req.body);
+  //console.log('Request Body:', req.body);
   const roles_con_permiso = {
     modificar: req.body['roles_con_permiso.modificar']
       ? req.body['roles_con_permiso.modificar'].map(id => new mongoose.Types.ObjectId(id))
@@ -108,11 +109,59 @@ exports.crearTarea = async (req, res) => {
       fechaVencimiento,
     });
     console.log('nuevatarea: ', nuevaTarea)
+    console.log('req.session.user: ', req.session.user);
     await nuevaTarea.save();
     res.redirect('/tareas/ordenadas');
   } catch (error) {
     console.error(error);
     res.send('Error al crear tarea');
+  }
+};
+
+// Formulario para avance tarea
+exports.formAvanceTarea = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const tarea = await Tarea.findById(id);
+    const estados = await Estado.find();
+    const prioridades = await Prioridad.find();
+    const usuarios = await Usuario.find();
+    const roles = await Rol.find();
+    const areas = await Area.find();
+
+    res.render('tareas/editar', {
+      titulo: 'Editar Tarea',
+      tarea,
+      estados,
+      prioridades,
+      usuarios,
+    });
+  } catch (error) {
+    console.error(error);
+    res.send('Error al obtener tarea');
+  }
+};
+
+// Avance tarea
+exports.avanceTarea = async (req, res) => {
+  const { id } = req.params;
+  const { area, titulo, descripcion, estado, prioridad, usuarioAsignado, fechaVencimiento } = req.body;
+
+  try {
+    await Tarea.findByIdAndUpdate(id, {
+      area,
+      titulo,
+      descripcion,
+      estado: estado || null,
+      prioridad: prioridad || null,
+      usuarioAsignado: usuarioAsignado || null,
+      fechaVencimiento,
+    });
+    res.redirect('/tareas');
+  } catch (error) {
+    console.error(error);
+    res.send('Error al editar tarea');
   }
 };
 
@@ -125,6 +174,9 @@ exports.formEditarTarea = async (req, res) => {
     const estados = await Estado.find();
     const prioridades = await Prioridad.find();
     const usuarios = await Usuario.find();
+    const roles = await Rol.find();
+    const areas = await Area.find();
+    
     res.render('tareas/editar', {
       titulo: 'Editar Tarea',
       tarea,
@@ -200,20 +252,23 @@ exports.getTareas = async (req, res) => {
   
       // Obtener las tareas filtradas
       const tareas = await Tarea.find(query)
-        .populate('estado prioridad usuarioAsignado')
+        .populate('estado prioridad usuarioAsignado area')
         .sort({ fechaVencimiento: 1 }); // Opcional: ordenar por fecha de vencimiento
   
       // Obtener todos los estados y prioridades para los filtros
       const Estado = require('../models/Estado');
       const Prioridad = require('../models/Prioridad');
+      const Area = require('../models/Area');
       const estados = await Estado.find();
       const prioridades = await Prioridad.find();
+      const areas = await Area.find();
   
       res.render('tareas/listar', { 
         titulo: 'Lista de Tareas', 
         tareas,
         estados,
         prioridades,
+        areas,
         filtros: { estado, prioridad, fecha }
       });
     } catch (error) {

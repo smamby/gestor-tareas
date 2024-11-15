@@ -2,7 +2,9 @@
 extends ../layout
 
 block content
-  h1= titulo
+  div(class='header')
+    h1= titulo
+    h2= user.nombre
   a.btn.btn-primary(href='/tareas/crear') Crear Nueva Tarea
   table
     thead
@@ -24,8 +26,12 @@ block content
           td= tarea.usuarioAsignado ? tarea.usuarioAsignado.nombre : 'Sin Asignar'
           td= tarea.fechaVencimiento ? tarea.fechaVencimiento.toISOString().split('T')[0] : 'Sin Fecha'
           td
-            a.btn.btn-primary.btn-sm(href=`/tareas/editar/${tarea._id}`) Editar
-            a.btn.btn-danger.btn-sm(href=`/tareas/eliminar/${tarea._id}`) Eliminar
+            if user.rolName === 'Administrador'
+              a.btn.btn-primary.btn-sm(href=`/tareas/editar/${tarea._id}`) Detalle
+              a.btn.btn-danger.btn-sm(href=`/tareas/eliminar/${tarea._id}`) Eliminar
+            else
+              a.btn.btn-primary.btn-sm(href=`/tareas/avance/${tarea._id}`) Avance
+              a.btn.btn-primary.btn-sm(href=`/tareas/editar/${tarea._id}`) Detalle
 
   // Mostrar mensajes flash si existen
   if error_msg

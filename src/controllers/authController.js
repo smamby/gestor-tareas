@@ -1,5 +1,6 @@
 // src/controllers/authController.js
 const Usuario = require('../models/Usuario');
+const Rol = require('../models/Rol');
 
 
 
@@ -30,8 +31,9 @@ exports.login = async (req, res) => {
       email: usuario.email,
       area: usuario.area._id,
       rol: usuario.rol._id,
+      rolName: usuario.rol.nombre,
     };
-    console.log('User_session: ', req.session.user.area._id)
+    console.log('User_session: ', req.session.user.rol)
 
     req.flash('success_msg', 'Inicio de sesión exitoso');
     res.redirect('/dashboard');
