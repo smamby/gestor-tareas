@@ -92,6 +92,7 @@ exports.crearTarea = async (req, res) => {
       ? req.body['roles_con_permiso.caducar'].map(id => new mongoose.Types.ObjectId(id))
       : [],
   };
+  const estadoInicializada = await Estado.findOne({nombre: 'Inicializada'})
   try {
     const nuevaTarea = new Tarea({
       
@@ -99,7 +100,7 @@ exports.crearTarea = async (req, res) => {
       titulo,
       descripcion,
       tarea_padre: tarea_padre,
-      estado: await Estado.findOne({nombre: 'Inicializada'}),
+      estado: estadoInicializada._id,
       prioridad: prioridad || null,
       usuarioAsignado: usuarioAsignado || null,
       usuarioResponsable: req.session.user.id,
