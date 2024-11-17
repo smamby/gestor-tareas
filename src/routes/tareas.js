@@ -39,10 +39,10 @@ router.get('/editar/:id',  checkUserRole('modificar'), tareaController.formEdita
 router.post('/editar/:id',  checkUserRole('modificar'), tareaController.editarTarea);
 
 // Formulario para Caducar tarea
-router.get('/editar/:id',  tareaController.formEditarTarea); //checkUserRole('caducar'), tareaController.formEditarTarea);
+//router.get('/caducar/:id',checkUserRole('caducar'),   tareaController.formcaducarTarea);
 
 // Caducar tarea
-router.post('/editar/:id',  tareaController.editarTarea); //checkUserRole('caducar'), tareaController.editarTarea);
+//router.post('/caducar/:id',checkUserRole('caducar'),   tareaController.caducarTarea);
 
 // Eliminar tarea
 router.get('/eliminar/:id',  checkUserRole('eliminar'), tareaController.eliminarTarea);

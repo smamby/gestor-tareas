@@ -1,0 +1,17 @@
+//- src/views/roles/editar.pug
+extends ../layout
+
+block content
+  h1= titulo
+  form(action=`/roles/editar/${id}`, method='POST')
+    label(for='nombre') Nombre:
+    input(type='text', name='nombre', id='nombre', value=rol.nombre, required)
+    
+    label(for='area') Area:
+    select(name='area', id='area', required)
+      option(value='') Sin Area
+      each area in areas
+        option(value=area._id, selected=(String(area._id) == String(rol.area._id))) #{area.nombre}
+
+    button(type='submit') Editar Rol
+    a.btn.btn-primary.volver(href='/roles') Volver a Roles

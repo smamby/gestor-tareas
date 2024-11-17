@@ -15,14 +15,15 @@ block content
     
     label(for='rol') Rol:
     select(name='rol', id='rol')
-      option(value='empleado') Empleado
-      option(value='administrador') Administrador
+      option(value='') Sin Asignar
+      each rol in roles
+          option(value=rol._id)= rol.nombre
     
     label(for='area') area:
     select(name='area', id='area', required)
-      option(value='Compras') Compras
-      option(value='Ventas') Ventas
-      option(value='Produccion') Producción
-      option(value='Inventario') Inventario
+      option(value='') Sin Asignar
+      each area in areas
+          option(value=area._id)= area.nombre
+      
     
     button(type='submit') Crear Usuario

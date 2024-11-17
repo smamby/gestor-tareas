@@ -1,5 +1,7 @@
 // src/controllers/usuarioController.js
 const Usuario = require('../models/Usuario');
+const Rol = require('../models/Rol');
+const Area = require('../models/Area');
 
 // Obtener todos los usuarios
 exports.getUsuarios = async (req, res) => {
@@ -13,13 +15,19 @@ exports.getUsuarios = async (req, res) => {
 };
 
 // Formulario para crear usuario
-exports.formCrearUsuario = (req, res) => {
-  res.render('usuarios/crear', { titulo: 'Crear Usuario' });
+exports.formCrearUsuario = async (req, res) => {
+  const areas = await Area.find({ nombre: { $ne: 'Todas' } });
+  const roles = await Rol.find();
+  res.render('usuarios/crear', { 
+    titulo: 'Crear Usuario',
+    roles,
+    areas,
+   });
 };
 
 // Crear nuevo usuario
 exports.crearUsuario = async (req, res) => {
-  const { nombre, email, contraseña, rol, departamento } = req.body;
+  const { nombre, email, contraseña, rol, area } = req.body;
 
   try {
     const nuevoUsuario = new Usuario({
@@ -27,7 +35,7 @@ exports.crearUsuario = async (req, res) => {
       email,
       contraseña,
       rol,
-      departamento,
+      area,
     });
 
     await nuevoUsuario.save();

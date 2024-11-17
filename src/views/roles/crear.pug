@@ -1,4 +1,4 @@
-//- src/views/roles/crear_rol.pug
+//- src/views/roles/crear.pug
 extends ../layout
 
 block content
@@ -13,5 +13,6 @@ block content
       each area in areas
         option(value=area._id)= area.nombre
 
-    button(type='submit') Crear Tarea
+    button(type='submit') Crear Rol
+    a.btn.btn-primary.volver(href='/roles') Volver a Roles
 

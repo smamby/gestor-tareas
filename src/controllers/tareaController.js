@@ -166,7 +166,8 @@ exports.avanceTarea = async (req, res) => {
   const tarea = await Tarea.findById(id)
   .populate('estado')
   .populate('prioridad')
-  .populate('usuarioAsignado');
+  .populate('usuarioAsignado')
+  .populate('area');
   const { titulo, descripcion, estado, prioridad, usuarioAsignado, descripcion_avance
    } = req.body;
   console.log('requst Body:', req.body)
@@ -295,6 +296,7 @@ exports.formEditarTarea = async (req, res) => {
 exports.editarTarea = async (req, res) => {
   const { id } = req.params;
   const { area, titulo, descripcion, usuarioAsignado } = req.body;
+  const areaTarea = await Area.findById(area);
   console.log('Request Body:', req.body);
   const tarea = await Tarea.findById(id)
   .populate('area')
@@ -322,7 +324,7 @@ exports.editarTarea = async (req, res) => {
     console.log('Se Edito Area');
     updateData.area = area;
     avances.push({      
-      descripcion_avance: `Se edito area: old: ${tarea.area} >> new: ${area}`,
+      descripcion_avance: `Se edito area: old: ${tarea.area.nombre} >> new: ${areaTarea.nombre}`,
       usuario_ejecutor: req.session.user.id,
       fecha_avance: new Date(Date.now()),      
     });
