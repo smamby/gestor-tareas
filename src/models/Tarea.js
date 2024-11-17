@@ -55,6 +55,7 @@ const TareaSchema = new Schema({
   avance: [
     {
       descripcion_avance: { type: String, required: true },
+      usuario_ejecutor: {type: Schema.Types.ObjectId, ref: 'Usuario' , required: true },
       fecha_avance: { type: Date, required: true }
     }
   ]

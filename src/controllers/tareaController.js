@@ -122,9 +122,6 @@ exports.crearTarea = async (req, res) => {
 };
 
 // Formulario para avance tarea
-// exports.formAvanceTarea = async (req, res) => {
-//   res.send('Página de prueba para avance tarea');
-// };
 exports.formAvanceTarea = async (req, res) => {
    const { id } = req.params;
    console.log('Controlador formAvanceTarea ejecutado con ID:', id);
@@ -136,6 +133,7 @@ exports.formAvanceTarea = async (req, res) => {
     .populate('estado')
     .populate('prioridad')
     .populate('usuarioAsignado')
+    .populate('avance.usuario_ejecutor')
     const estados = await Estado.find();
     const prioridades = await Prioridad.find();
     const usuarios = await Usuario.find();
@@ -152,6 +150,7 @@ exports.formAvanceTarea = async (req, res) => {
       roles,
       areas,
       //fecha_vencimiento: formatDate(tarea.fechaVencimiento),
+      //usuario_ejecutor: req.session.user.nombre,
       fecha_avance: new Date(Date.now()),
       formatDate,
     });
@@ -183,9 +182,11 @@ exports.avanceTarea = async (req, res) => {
   };
   
   if (descripcion.trim() !== '' && tarea.descripcion !== descripcion) {
+    console.log('ENtro, Se Actualizo Descripcion', tarea.descripcion, descripcion);
     updateData.descripcion = descripcion;
     updateData.$push.avance.push({      
       descripcion_avance: `Se actualizo descripcion: old: ${tarea.descripcion} >> new: ${descripcion}`,
+      usuario_ejecutor: req.session.user.id,
       fecha_avance: new Date(Date.now()),      
     });
   };
@@ -193,6 +194,7 @@ exports.avanceTarea = async (req, res) => {
     updateData.titulo = titulo;
     updateData.$push.avance.push({
       descripcion_avance: `Se actualizo titulo: old: ${tarea.titulo} >> new: ${titulo}`,
+      usuario_ejecutor: req.session.user.id,
       fecha_avance: new Date(Date.now()),      
     });
   };
@@ -201,6 +203,7 @@ exports.avanceTarea = async (req, res) => {
     const state = await Estado.findById(estado)
     updateData.$push.avance.push({      
       descripcion_avance: `Se actualizo estado: old: ${tarea.estado.nombre} >> new: ${state.nombre}`,
+      usuario_ejecutor: req.session.user.id,
       fecha_avance: new Date(Date.now()),      
     });
   };
@@ -209,6 +212,7 @@ exports.avanceTarea = async (req, res) => {
     const prio = await Prioridad.findById(prioridad)
     updateData.$push.avance.push({      
       descripcion_avance: `Se actualizo prioridad: old: ${tarea.prioridad.nombre} >> new: ${prio.nombre}`,
+      usuario_ejecutor: req.session.user.id,
       fecha_avance: new Date(Date.now()),      
     });
   };
@@ -217,6 +221,7 @@ exports.avanceTarea = async (req, res) => {
     const usrAsig = await Usuario.findById(usuarioAsignado)
     updateData.$push.avance.push({      
       descripcion_avance: `Se actualizo usuarioAsignado: old: ${tarea.usuarioAsignado.nombre} >> new: ${usrAsig.nombre}`,
+      usuario_ejecutor: req.session.user.id,
       fecha_avance: new Date(Date.now()),      
     });
   };
@@ -225,9 +230,13 @@ exports.avanceTarea = async (req, res) => {
   if (descripcion_avance && descripcion_avance.trim() !== '') {
     updateData.$push.avance.push({      
       descripcion_avance: descripcion_avance,
+      usuario_ejecutor: req.session.user.id,
       fecha_avance: new Date(Date.now()),      
     });
   }
+  console.log('descripcion:',(tarea.descripcion == descripcion));
+  console.log('tarea.d:', tarea.descripcion);
+  console.log('d:', descripcion);
   console.log('estado:',(tarea.estado._id == estado));
   console.log('prioridad:',(tarea.prioridad._id == prioridad));
   console.log('usuarioAsignado:',(tarea.usuarioAsignado._id == usuarioAsignado));
@@ -309,72 +318,102 @@ exports.editarTarea = async (req, res) => {
     roles_con_permiso,
   };
   const avances = [];
-  if (area.trim() && tarea.area != area) {
+  if (area.trim() && tarea.area._id != area) {
+    console.log('Se Edito Area');
     updateData.area = area;
     avances.push({      
-      area_avance: `Se actualizo area: old: ${tarea.area} >> new: ${area}`,
+      descripcion_avance: `Se edito area: old: ${tarea.area} >> new: ${area}`,
+      usuario_ejecutor: req.session.user.id,
       fecha_avance: new Date(Date.now()),      
     });
   };
-  if (descripcion.trim() !== '' && tarea.descripcion != descripcion) {
+  if (descripcion.trim() !== '' && tarea.descripcion !== descripcion) {
+    console.log('Se Edito Descripcion');
     updateData.descripcion = descripcion;
     avances.push({      
-      descripcion_avance: `Se actualizo descripcion: old: ${tarea.descripcion} >> new: ${descripcion}`,
+      descripcion_avance: `Se edito descripcion: old: ${tarea.descripcion} >> new: ${descripcion}`,
+      usuario_ejecutor: req.session.user.id,
       fecha_avance: new Date(Date.now()),      
     });
   };
-  if (titulo.trim() !== '' && tarea.titulo != titulo) {
+  if (titulo.trim() !== '' && tarea.titulo !== titulo) {
+    console.log('Se Edito Titulo');
     updateData.titulo = titulo;
     avances.push({
-      descripcion_avance: `Se actualizo titulo: old: ${tarea.titulo} >> new: ${titulo}`,
+      descripcion_avance: `Se edito titulo: old: ${tarea.titulo} >> new: ${titulo}`,
+      usuario_ejecutor: req.session.user.id,
       fecha_avance: new Date(Date.now()),      
     });
   };
-  if (tarea.usuarioAsignado._id != usuarioAsignado) {
+  if (tarea.usuarioAsignado._id.toString() !== usuarioAsignado) {
+    console.log('Se Edito usuarioAsignado');
     updateData.usuarioAsignado = usuarioAsignado;
     const usrAsig = await Usuario.findById(usuarioAsignado)
     avances.push({      
-      descripcion_avance: `Se actualizo usuarioAsignado: old: ${tarea.usuarioAsignado.nombre} >> new: ${usrAsig.nombre}`,
+      descripcion_avance: `Se edito usuarioAsignado: old: ${tarea.usuarioAsignado.nombre} >> new: ${usrAsig.nombre}`,
+      usuario_ejecutor: req.session.user.id,
       fecha_avance: new Date(Date.now()),      
     });
   };
-  if (JSON.stringify(tarea.roles_con_permiso) != JSON.stringify(roles_con_permiso)) {
-    updateData.roles_con_permiso = roles_con_permiso;
-    const txtRCP = async () => {
-      for (let action in roles_con_permiso) {
-        if (action.length > 0) {
-          for (let permiso in action) {
-            if (action == 'modificar') {
-              const rolAllowed = await Rol.findById({permiso})
-              if (rolAllowed) {
-                avances.push({
-                  descripcion_avance: `Cambiaron los roles permitidos en editar: old: ${tarea.roles_con_permiso[action]} >> new: ${rolAllowed.nombre}`,
-                  fecha_avance: new Date(),
-                });
-              }
-            } else if (action == 'avance') {
-              const usuarioAllowed = await Usuario.findById({permiso})
-              if (usuarioAllowed) {
-                avances.push({
-                  descripcion_avance: `Cambiaron los usuarios permitidos en Avance: old: ${tarea.roles_con_permiso[action]} >> new: ${usuarioAllowed.nombre}`,
-                  fecha_avance: new Date(),
-                });
-              }
-              
-            }
-          }
-        }
-      }
-    }
-    updateData.$push = { avance: avances };
-    
-  };
-  console.log('updateData: ', updateData);
-  try {
-    await Tarea.findByIdAndUpdate(id, {
-      updateData,
+  if (JSON.stringify(tarea.roles_con_permiso.modificar) !== JSON.stringify(roles_con_permiso.modificar) ||
+      JSON.stringify(tarea.roles_con_permiso.avance) !== JSON.stringify(roles_con_permiso.avance)) {
+    console.log('Se Edito roles');
+    console.log(JSON.stringify(tarea.roles_con_permiso));
+    console.log(JSON.stringify(roles_con_permiso));
+    avances.push({
+      descripcion_avance: `Se actualizaron los roles permitidos.`,
+      usuario_ejecutor: req.session.user.id,
+      fecha_avance: new Date(),
     });
-    req.flash('success_msg', 'Edicion exitosamente');
+  }
+  // if (JSON.stringify(tarea.roles_con_permiso) != JSON.stringify(roles_con_permiso)) {
+  //   updateData.roles_con_permiso = roles_con_permiso;
+  //   const txtRCP = async () => {
+  //     for (let action in roles_con_permiso) {
+  //       if (action.length > 0) {
+  //         for (let permiso in action) {
+  //           if (action == 'modificar') {
+  //             const rolAllowed = await Rol.findById({permiso})
+  //             if (rolAllowed) {
+  //               avances.push({
+  //                 descripcion_avance: `Cambiaron los roles permitidos en editar: old: ${tarea.roles_con_permiso[action]} >> new: ${rolAllowed.nombre}`,
+  //                 fecha_avance: new Date(),
+  //               });
+  //             }
+  //           } else if (action == 'avance') {
+  //             const usuarioAllowed = await Usuario.findById({permiso})
+  //             if (usuarioAllowed) {
+  //               avances.push({
+  //                 descripcion_avance: `Cambiaron los usuarios permitidos en Avance: old: ${tarea.roles_con_permiso[action]} >> new: ${usuarioAllowed.nombre}`,
+  //                 fecha_avance: new Date(),
+  //               });
+  //             }
+              
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  //   // updateData.$push = { avance: avances };
+    
+  // };
+  console.log('updateData: ', updateData);
+  console.log('avances: ', avances);
+  try {
+    await Tarea.findByIdAndUpdate(id,
+      {
+        $set: {
+          area,
+          titulo,
+          descripcion,
+          usuarioAsignado,
+          roles_con_permiso, // Actualiza todo el objeto roles_con_permiso
+        },
+        $push: { avance: { $each: avances } }, // Agrega avances como un array
+      },
+      { new: true } // Retorna el documento actualizado);
+    )
+    req.flash('success_msg', 'Edicion exitosa');
     res.redirect('/tareas');
   } catch (error) {
     console.error(error);    

@@ -20,8 +20,8 @@ block content
       p.inline= tarea.area.nombre
 
     label(for='descripcion').inline Descripción:
-    p.inline #{tarea.descripcion}
-    textarea(name='descripcion', id='descripcion')
+    //- p.inline #{tarea.descripcion}
+    textarea(name='descripcion', id='descripcion')= tarea.descripcion
 
     label(for='estado').inline Estado: 
     p.inline #{tarea.estado ? tarea.estado.nombre : 'Sin estado'}
@@ -60,11 +60,13 @@ block content
       thead
         tr
           th descripción avance
+          th usuario ejecutor
           th fecha de avance
       tbody
         each a in tarea.avance
           tr
             td= a.descripcion_avance
+            td= a.usuario_ejecutor.nombre
             td= formatDate(a.fecha_avance)
 
     div(class="registrar-avance")

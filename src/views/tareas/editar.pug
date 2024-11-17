@@ -54,7 +54,8 @@ block content
       select(name='roles_con_permiso.modificar[]', id='roles_con_permiso.modificar', multiple)
         option(value='') Sin Asignar
         each rol in roles
-          option(value=rol._id)= rol.nombre
+          //- option(value=rol._id)= rol.nombre
+          option(value=rol._id, selected=tarea.roles_con_permiso.modificar.includes(rol._id.toString()))= rol.nombre
 
     div
       label(for='roles_con_permiso.avance').inline Permisos para registrar avance   
@@ -62,7 +63,8 @@ block content
       select(name='roles_con_permiso.avance[]', id='roles_con_permiso.avance', multiple)
         option(value='') Sin Asignar
         each usuario in usuarios
-          option(value=usuario._id)= usuario.nombre
+          //- option(value=usuario._id)= usuario.nombre
+          option(value=usuario._id, selected=tarea.roles_con_permiso.avance.includes(usuario._id.toString()))= usuario.nombre
 
     label(for='fechaVencimiento').inline Fecha de Vencimiento: 
     p.inline= formatDate(tarea.fechaVencimiento)
