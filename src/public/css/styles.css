@@ -250,4 +250,32 @@
     padding: 4px 8px;
     font-size: 12px;
   }
-  
+
+  .registrar-avance {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: #0056b3 1px solid;
+    border-radius: 10px;
+  }
+  .inline {
+    display: inline;
+  }
+  .inblock {
+    display: block;
+    margin-bottom: 16px;
+  }
+  .volver {
+    margin-left: 20px;
+    height: 34px;
+  }
+  .ctrlText {
+    font-size: 14px;
+    color: #0056b3;
+  }
+  .roles-permitidos {
+    
+  }
+  .cnt-btn-footer {
+    margin-top: 24px;
+  }

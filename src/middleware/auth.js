@@ -2,6 +2,7 @@
 const Usuario = require('../models/Usuario');
 const Area = require('../models/Area');
 const Rol = require('../models/Rol');
+const Tarea = require('../models/Tarea');
 
 module.exports = {
     ensureAuthenticated: async (req, res, next) => {
@@ -20,12 +21,51 @@ module.exports = {
       req.flash('error_msg', 'No tienes permisos para realizar esta acción');
       res.redirect('/dashboard');
     },     
-    checkUserRole: (role) => async (req, res, next) => {
-      if (req.session.user && req.session.user.rol === role) {
-        return next();
-      }
+    checkUserRoleAPAGADO: (roles) => async (req, res, next) => {      
+      if (req.session.user && ( roles.some((role) => req.session.user.rol.equals(role)) || 
+                                roles.some((role) => req.session.user.id.equals(role))))
+      return next();
+    
       req.flash('error_msg', 'No tienes permisos para realizar esta acción');
       res.redirect('/dashboard');
-    }
-  };
+    
+    },
+    checkUserRole: (action) => async (req, res, next) => {
+      const { id } = req.params; 
+      const userRolID = req.session.user.rol;
+      const userID = req.session.user.id;
+      const tarea = await Tarea.findById(id);
+      const rolesConPermiso = tarea.roles_con_permiso[action];
+
+      // console.log('Rol del usuario:', userRolID);
+      // console.log('ID usuario:', userID)
+      // console.log('Roles permitidos:', tarea.roles_con_permiso[action]);
+
+      // console.log('Middleware checkUserRole ejecutado', { action, rolesConPermiso, userRolID, userID });
+      
+      try {
+        
+        if (!tarea) {
+          console.log('Tarea no encontrada');
+          req.flash('error_msg', 'Tarea no encontrada');
+          return res.redirect('/dashboard');
+        }
+    
+        // Verificar si el rol del usuario está permitido para esta acción
+        const permittedRoles = tarea.roles_con_permiso[action]; 
+        if (permittedRoles.includes(userRolID) || permittedRoles.includes(userID)) {
+          console.log('Permiso concedido');
+          return next(); 
+        }
+        
+        console.log('Permiso denegado');
+        req.flash('error_msg', 'No tienes permisos para realizar esta acción');
+        res.redirect('/dashboard');
+      } catch (error) {
+        console.error(error);
+        req.flash('error_msg', 'Error al verificar permisos');
+        res.redirect('/dashboard');
+      }
+    },    
+};
   

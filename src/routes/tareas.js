@@ -24,18 +24,27 @@ router.use(ensureAuthenticated);
 router.post('/crear', tareaController.crearTarea);
 
 // Formulario para avance tarea
-router.get('/avance/:id', tareaController.formAvanceTarea);
+router.get('/avance/:id', async (req, res, next) => {
+    console.log(`Solicitud recibida en /tareas/avance/${req.params.id}`);
+    next();
+  }, checkUserRole('avance'), tareaController.formAvanceTarea);
 
 // Avance tarea
-router.post('/avance/:id', tareaController.avanceTarea);
+router.post('/avance/:id',  checkUserRole('avance'), tareaController.avanceTarea);
 
 // Formulario para editar tarea
-router.get('/editar/:id', tareaController.formEditarTarea);
+router.get('/editar/:id',  checkUserRole('modificar'), tareaController.formEditarTarea);
 
 // Editar tarea
-router.post('/editar/:id', tareaController.editarTarea);
+router.post('/editar/:id',  checkUserRole('modificar'), tareaController.editarTarea);
+
+// Formulario para Caducar tarea
+router.get('/editar/:id',  tareaController.formEditarTarea); //checkUserRole('caducar'), tareaController.formEditarTarea);
+
+// Caducar tarea
+router.post('/editar/:id',  tareaController.editarTarea); //checkUserRole('caducar'), tareaController.editarTarea);
 
 // Eliminar tarea
-router.get('/eliminar/:id', tareaController.eliminarTarea);
+router.get('/eliminar/:id',  checkUserRole('eliminar'), tareaController.eliminarTarea);
 
 module.exports = router;

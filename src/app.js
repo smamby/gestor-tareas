@@ -8,12 +8,14 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const { ensureAuthenticated } = require('./middleware/auth');
 require('./database/seed.js');
+const cors = require('cors');
 
 const app = express();
 
 // Conectar a la base de datos
 connectDB();
 
+app.use(cors());
 // Middleware
 //app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true })); //cambie de false a true
@@ -54,6 +56,7 @@ app.use('/usuarios', usuarioRoutes);
 app.use('/tareas', tareaRoutes);
 app.use('/roles', rolesRoutes);
 app.use('/auth', authRoutes);
+
 
 // Ruta principal (Login)
 app.get('/', (req, res) => {

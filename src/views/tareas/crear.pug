@@ -48,21 +48,24 @@ block content
     h3 Roles con Permiso
 
     div
-      label(for='roles_con_permiso.modificar') Permisos para modificar tarea (usa 'ctrl' para sumar selecciones)
+      label(for='roles_con_permiso.modificar').inline Permisos para registrar avance   
+      p.inline.ctrlText usa 'ctrl' para sumar selecciones
       select(name='roles_con_permiso.modificar[]', id='roles_con_permiso.modificar', multiple)
         option(value='') Sin Asignar
         each rol in roles
           option(value=rol._id)= rol.nombre 
       
     div
-      label(for='roles_con_permiso.avance') Permisos para registrar avance  (usa 'ctrl' para sumar selecciones)
+      label(for='roles_con_permiso.avance').inline Permisos para registrar avance   
+      p.inline.ctrlText usa 'ctrl' para sumar selecciones
       select(name='roles_con_permiso.avance[]', id='roles_con_permiso.avance', multiple)
         option(value='') Sin Asignar
         each usuario in usuarios
           option(value=usuario._id)= usuario.nombre
       
     div
-      label(for='roles_con_permiso.caducar') Permisos para caducar Tarea (usa 'ctrl' para sumar selecciones)
+      label(for='roles_con_permiso.caducar').inline Permisos para registrar avance   
+      p.inline.ctrlText usa 'ctrl' para sumar selecciones
       select(name='roles_con_permiso.caducar[]', id='roles_con_permiso.caducar', multiple)
         option(value='') Sin Asignar
         each rol in roles

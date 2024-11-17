@@ -29,6 +29,7 @@ const seedData = async () => {
         { nombre: 'Pendiente' },
         { nombre: 'En Progreso' },
         { nombre: 'Completada' },
+        { nombre: 'Inicializada'},
       ]);
     
       // Insertar Prioridades
