@@ -273,9 +273,17 @@
     font-size: 14px;
     color: #0056b3;
   }
-  .roles-permitidos {
-    
-  }
+  
   .cnt-btn-footer {
     margin-top: 24px;
+  }
+  a[aria-disabled="true"] {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+    background-color: #d6d6d6;
+    text-decoration: none;
+  }
+  a[aria-disabled="true"]:hover {
+    background-color: #d6d6d6; 
   }

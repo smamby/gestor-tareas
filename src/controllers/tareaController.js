@@ -17,8 +17,17 @@ exports.getTareas = async (req, res) => {
     .populate('estado', 'nombre')
     .populate('prioridad', 'nombre')
     .populate('usuarioAsignado', 'nombre')    
-    console.log(tareas);
-    res.render('tareas/listar', { titulo: 'Lista de Tareas', tareas });
+    const userID = req.session.user.id;
+    const rolID = req.session.user.rol;
+    //console.log('tareas:',tareas);
+    console.log('incluyeModificar: ', tareas.forEach( tarea => tarea.roles_con_permiso.modificar.includes(rolID))),
+    console.log('incluyeAvance: ', tareas.forEach( tarea => tarea.roles_con_permiso.avance.includes(userID))),
+    res.render('tareas/listar', { 
+      titulo: 'Lista de Tareas', 
+      tareas ,
+      userID,
+      rolID,
+    });
   } catch (error) {
     console.error(error);
     res.send('Error al obtener tareas');
@@ -48,8 +57,28 @@ exports.getTareasOrdenadas = async (req, res) => {
     .populate('area')
     .sort({[sort]: (directionSort * -1)});
     directionSort *= -1; 
-    console.log(tareas);
-    res.render('tareas/listar', { titulo: 'Lista de Tareas', tareas, estados, prioridades, filtros  });
+    const userID = req.session.user.id;
+    const rolID = req.session.user.rol;
+    const incluyeModificar = tareas[0].roles_con_permiso.modificar.map(id => id.toString()).includes(String(rolID));
+    const incluyeAvance = tareas[0].roles_con_permiso.avance.map(id => id.toString()).includes(String(userID));
+    //console.log('tareas:',tareas);
+    console.log('userID: ', String(userID) )
+    console.log('logID: ', String(rolID))
+    console.log('tareasConPermisoModificar:', tareas[0].roles_con_permiso.modificar.map(id => id.toString()));
+    console.log('tareasConPermisoAvance:', tareas[0].roles_con_permiso.avance.map(id => id.toString()));
+    console.log('incluyeModificar:', incluyeModificar);
+    console.log('incluyeAvance:', incluyeAvance);
+    res.render('tareas/listar', { 
+      titulo: 'Lista de Tareas', 
+      tareas, 
+      estados, 
+      prioridades, 
+      filtros, 
+      userID, 
+      rolID, 
+      incluyeModificar,
+      incluyeAvance,
+    });
   } catch (error) {
     console.error(error);
     res.send('Error al obtener tareas');
