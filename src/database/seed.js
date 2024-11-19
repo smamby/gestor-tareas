@@ -43,6 +43,7 @@ const seedData = async () => {
         { nombre: 'Ventas' },
         { nombre: 'Produccion' },
         { nombre: 'Compras' },
+        { nombre: 'Inventario' },
         { nombre: 'Todas'}
       ]);
       // Obtener los _id de las áreas insertadas

@@ -31,11 +31,11 @@ block content
               a.btn.btn-danger.btn-sm(href=`/tareas/eliminar/${tarea._id}`) Eliminar
             else
               a.btn.btn-primary.btn-sm(
-                href=`/tareas/avance/${tarea._id}` 
-                aria-disabled=(!incluyeModificar ? 'true' : undefined)) Detalle
-              a.btn.btn-primary.btn-sm(
                 href=`/tareas/editar/${tarea._id}` 
-                aria-disabled=(!incluyeAvance ? 'true' : undefined)) Avance
+                aria-disabled=(!tarea.roles_con_permiso.modificar.map(id => id.toString()).includes(String(rolID)) ? 'true' : 'false')) Detalle
+              a.btn.btn-primary.btn-sm(
+                href=`/tareas/avance/${tarea._id}` 
+                aria-disabled=(!tarea.roles_con_permiso.avance.map(id => id.toString()).includes(String(userID)) ? 'true' : 'false')) Avance
               //- if tarea.roles_con_permiso.modificar.includes(String(rolID))
               //-   a.btn.btn-primary.btn-sm(href=`/tareas/avance/${tarea._id}`, enable) Avance
               //- else 

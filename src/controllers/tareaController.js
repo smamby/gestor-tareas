@@ -19,14 +19,25 @@ exports.getTareas = async (req, res) => {
     .populate('usuarioAsignado', 'nombre')    
     const userID = req.session.user.id;
     const rolID = req.session.user.rol;
+    const incluyeModificar = tareas[0].roles_con_permiso.modificar.map(id => id.toString()).includes(String(rolID));
+    const incluyeAvance = tareas[0].roles_con_permiso.avance.map(id => id.toString()).includes(String(userID));
     //console.log('tareas:',tareas);
-    console.log('incluyeModificar: ', tareas.forEach( tarea => tarea.roles_con_permiso.modificar.includes(rolID))),
-    console.log('incluyeAvance: ', tareas.forEach( tarea => tarea.roles_con_permiso.avance.includes(userID))),
+    console.log('userID: ', String(userID) )
+    console.log('logID: ', String(rolID))
+    console.log('tareasConPermisoModificar:', tareas[0].roles_con_permiso.modificar.map(id => id.toString()));
+    console.log('tareasConPermisoAvance:', tareas[0].roles_con_permiso.avance.map(id => id.toString()));
+    console.log('incluyeModificar:', incluyeModificar);
+    console.log('incluyeAvance:', incluyeAvance);
     res.render('tareas/listar', { 
       titulo: 'Lista de Tareas', 
-      tareas ,
-      userID,
-      rolID,
+      tareas, 
+      // estados, 
+      // prioridades, 
+      filtros, 
+      userID, 
+      rolID, 
+      // incluyeModificar,
+      // incluyeAvance,
     });
   } catch (error) {
     console.error(error);
@@ -76,8 +87,8 @@ exports.getTareasOrdenadas = async (req, res) => {
       filtros, 
       userID, 
       rolID, 
-      incluyeModificar,
-      incluyeAvance,
+      // incluyeModificar,
+      // incluyeAvance,
     });
   } catch (error) {
     console.error(error);
@@ -493,24 +504,35 @@ exports.getTareas = async (req, res) => {
   
       // Obtener las tareas filtradas
       const tareas = await Tarea.find(query)
-        .populate('estado prioridad usuarioAsignado area')
-        .sort({ fechaVencimiento: 1 }); // Opcional: ordenar por fecha de vencimiento
-  
-      // Obtener todos los estados y prioridades para los filtros
-      const Estado = require('../models/Estado');
-      const Prioridad = require('../models/Prioridad');
-      const Area = require('../models/Area');
+      .populate('estado prioridad usuarioAsignado area')
+      .sort({ fechaVencimiento: 1 }); // Opcional: ordenar por fecha de vencimiento
+
       const estados = await Estado.find();
       const prioridades = await Prioridad.find();
       const areas = await Area.find();
+      const userID = req.session.user.id;
       const userName = req.session.user.nombre
+      const rolID = req.session.user.rol;
+      const incluyeModificar = tareas[0].roles_con_permiso.modificar.map(id => id.toString()).includes(String(rolID));
+      const incluyeAvance = tareas[0].roles_con_permiso.avance.map(id => id.toString()).includes(String(userID));
+      //console.log('tareas:',tareas);
+      console.log('userID: ', String(userID) )
+      console.log('logID: ', String(rolID))
+      console.log('tareasConPermisoModificar:', tareas[0].roles_con_permiso.modificar.map(id => id.toString()));
+      console.log('tareasConPermisoAvance:', tareas[0].roles_con_permiso.avance.map(id => id.toString()));
+      console.log('incluyeModificar:', incluyeModificar);
+      console.log('incluyeAvance:', incluyeAvance);
       res.render('tareas/listar', { 
         titulo: 'Lista de Tareas', 
-        userName,
-        tareas,
-        estados,
+        tareas, 
+        estados, 
         prioridades,
-        areas,        
+        areas,
+        userID,
+        userName,
+        rolID, 
+        // incluyeModificar,
+        // incluyeAvance,
         filtros: { estado, prioridad, fecha }
       });
     } catch (error) {
