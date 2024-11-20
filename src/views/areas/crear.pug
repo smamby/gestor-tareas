@@ -1,0 +1,18 @@
+//- src/views/roles/crear.pug
+extends ../layout
+
+block content
+  h1= titulo
+  form(action='/areas/crear', method='POST')
+    label(for='nombre') Nombre de Area:
+    input(type='text', name='nombre', id='nombre', required)
+    
+    //- label(for='area') Area:
+    //- select(name='area', id='area', required)
+    //-   option(value='') Sin Area
+    //-   each area in areas
+    //-     option(value=area._id)= area.nombre
+
+    button(type='submit') Crear Area
+    a.btn.btn-primary.volver(href='/areas') Volver a Areas
+

@@ -1,0 +1,18 @@
+//- src/views/areas/listar.pug
+extends ../layout
+
+block content
+  h1= titulo
+  a.btn.btn-primary(href='/areas/crear') Crear Nuevo Area
+  a.btn.btn-primary(href='/') Dashboard
+  table   
+    thead
+      tr
+        th Area
+    tbody
+      each area in areas
+        tr
+          td= area.nombre 
+          td
+            a.btn.btn-primary.btn-sm(href=`/areas/editar/${area._id}`) Editar
+            a.btn.btn-danger.btn-sm(href=`/areas/eliminar/${area._id}`) Eliminar

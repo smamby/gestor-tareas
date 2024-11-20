@@ -51,10 +51,12 @@ const usuarioRoutes = require('./routes/usuarios');
 const tareaRoutes = require('./routes/tareas');
 const rolesRoutes = require('./routes/roles');
 const authRoutes = require('./routes/auth');
+const areasRoutes = require('./routes/areas');
 
 app.use('/usuarios', usuarioRoutes);
 app.use('/tareas', tareaRoutes);
 app.use('/roles', rolesRoutes);
+app.use('/areas', areasRoutes);
 app.use('/auth', authRoutes);
 
 
