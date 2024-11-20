@@ -37,15 +37,6 @@ block content
                 href=`/tareas/editar/${tarea._id}` 
                 aria-disabled=(!tarea.roles_con_permiso.modificar.map(id => id.toString()).includes(String(rolID)) ? 'true' : 'false')) Detalle
                 
-              //- if tarea.roles_con_permiso.modificar.includes(String(rolID))
-              //-   a.btn.btn-primary.btn-sm(href=`/tareas/avance/${tarea._id}`, enable) Avance
-              //- else 
-              //-    a.btn.btn-primary.btn-sm(href=`/tareas/avance/${tarea._id}`, disabled) Avance
-              //- if tarea.roles_con_permiso.avance.includes(String(userID))
-              //-   a.btn.btn-primary.btn-sm(href=`/tareas/editar/${tarea._id}`, enable) Detalle
-              //- else
-              //-   a.btn.btn-primary.btn-sm(href=`/tareas/editar/${tarea._id}`, disabled) Detalle
-
   // Mostrar mensajes flash si existen
   if error_msg
     p(style="color: red")= error_msg

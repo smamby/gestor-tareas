@@ -19,15 +19,15 @@ exports.getTareas = async (req, res) => {
     .populate('usuarioAsignado', 'nombre')    
     const userID = req.session.user.id;
     const rolID = req.session.user.rol;
-    const incluyeModificar = tareas[0].roles_con_permiso.modificar.map(id => id.toString()).includes(String(rolID));
-    const incluyeAvance = tareas[0].roles_con_permiso.avance.map(id => id.toString()).includes(String(userID));
+    //const incluyeModificar = tareas[0].roles_con_permiso.modificar.map(id => id.toString()).includes(String(rolID));
+    //const incluyeAvance = tareas[0].roles_con_permiso.avance.map(id => id.toString()).includes(String(userID));
     //console.log('tareas:',tareas);
     console.log('userID: ', String(userID) )
     console.log('logID: ', String(rolID))
     console.log('tareasConPermisoModificar:', tareas[0].roles_con_permiso.modificar.map(id => id.toString()));
     console.log('tareasConPermisoAvance:', tareas[0].roles_con_permiso.avance.map(id => id.toString()));
-    console.log('incluyeModificar:', incluyeModificar);
-    console.log('incluyeAvance:', incluyeAvance);
+    //console.log('incluyeModificar:', incluyeModificar);
+    //console.log('incluyeAvance:', incluyeAvance);
     res.render('tareas/listar', { 
       titulo: 'Lista de Tareas', 
       tareas, 
@@ -70,15 +70,15 @@ exports.getTareasOrdenadas = async (req, res) => {
     directionSort *= -1; 
     const userID = req.session.user.id;
     const rolID = req.session.user.rol;
-    const incluyeModificar = tareas[0].roles_con_permiso.modificar.map(id => id.toString()).includes(String(rolID));
-    const incluyeAvance = tareas[0].roles_con_permiso.avance.map(id => id.toString()).includes(String(userID));
+    //const incluyeModificar = tareas[0].roles_con_permiso.modificar.map(id => id.toString()).includes(String(rolID));
+    //const incluyeAvance = tareas[0].roles_con_permiso.avance.map(id => id.toString()).includes(String(userID));
     //console.log('tareas:',tareas);
     console.log('userID: ', String(userID) )
     console.log('logID: ', String(rolID))
     console.log('tareasConPermisoModificar:', tareas[0].roles_con_permiso.modificar.map(id => id.toString()));
     console.log('tareasConPermisoAvance:', tareas[0].roles_con_permiso.avance.map(id => id.toString()));
-    console.log('incluyeModificar:', incluyeModificar);
-    console.log('incluyeAvance:', incluyeAvance);
+    // console.log('incluyeModificar:', incluyeModificar);
+    // console.log('incluyeAvance:', incluyeAvance);
     res.render('tareas/listar', { 
       titulo: 'Lista de Tareas', 
       tareas, 
@@ -513,15 +513,15 @@ exports.getTareas = async (req, res) => {
       const userID = req.session.user.id;
       const userName = req.session.user.nombre
       const rolID = req.session.user.rol;
-      const incluyeModificar = tareas[0].roles_con_permiso.modificar.map(id => id.toString()).includes(String(rolID));
-      const incluyeAvance = tareas[0].roles_con_permiso.avance.map(id => id.toString()).includes(String(userID));
+      //const incluyeModificar = tareas[0].roles_con_permiso.modificar.map(id => id.toString()).includes(String(rolID));
+      //const incluyeAvance = tareas[0].roles_con_permiso.avance.map(id => id.toString()).includes(String(userID));
       //console.log('tareas:',tareas);
       console.log('userID: ', String(userID) )
-      console.log('logID: ', String(rolID))
+      console.log('rolID: ', String(rolID))
       console.log('tareasConPermisoModificar:', tareas[0].roles_con_permiso.modificar.map(id => id.toString()));
       console.log('tareasConPermisoAvance:', tareas[0].roles_con_permiso.avance.map(id => id.toString()));
-      console.log('incluyeModificar:', incluyeModificar);
-      console.log('incluyeAvance:', incluyeAvance);
+      //console.log('incluyeModificar:', incluyeModificar);
+      //console.log('incluyeAvance:', incluyeAvance);
       res.render('tareas/listar', { 
         titulo: 'Lista de Tareas', 
         tareas, 
