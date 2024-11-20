@@ -131,6 +131,9 @@
     text-align: left;
     border-bottom: 1px solid #ddd;
   }
+  .tarea-tbl {
+    cursor: pointer;
+  }
   
   table tbody tr:nth-child(even) {
     background-color: #f9f9f9;
