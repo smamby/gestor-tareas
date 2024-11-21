@@ -24,8 +24,8 @@ exports.getTareas = async (req, res) => {
     //console.log('tareas:',tareas);
     console.log('userID: ', String(userID) )
     console.log('logID: ', String(rolID))
-    console.log('tareasConPermisoModificar:', tareas[0].roles_con_permiso.modificar.map(id => id.toString()));
-    console.log('tareasConPermisoAvance:', tareas[0].roles_con_permiso.avance.map(id => id.toString()));
+    // console.log('tareasConPermisoModificar:', tareas[0].roles_con_permiso.modificar.map(id => id.toString()));
+    // console.log('tareasConPermisoAvance:', tareas[0].roles_con_permiso.avance.map(id => id.toString()));
     //console.log('incluyeModificar:', incluyeModificar);
     //console.log('incluyeAvance:', incluyeAvance);
     res.render('tareas/listar', { 
@@ -75,8 +75,8 @@ exports.getTareasOrdenadas = async (req, res) => {
     //console.log('tareas:',tareas);
     console.log('userID: ', String(userID) )
     console.log('logID: ', String(rolID))
-    console.log('tareasConPermisoModificar:', tareas[0].roles_con_permiso.modificar.map(id => id.toString()));
-    console.log('tareasConPermisoAvance:', tareas[0].roles_con_permiso.avance.map(id => id.toString()));
+    // console.log('tareasConPermisoModificar:', tareas[0].roles_con_permiso.modificar.map(id => id.toString()));
+    // console.log('tareasConPermisoAvance:', tareas[0].roles_con_permiso.avance.map(id => id.toString()));
     // console.log('incluyeModificar:', incluyeModificar);
     // console.log('incluyeAvance:', incluyeAvance);
     res.render('tareas/listar', { 
@@ -518,8 +518,8 @@ exports.getTareas = async (req, res) => {
       //console.log('tareas:',tareas);
       console.log('userID: ', String(userID) )
       console.log('rolID: ', String(rolID))
-      console.log('tareasConPermisoModificar:', tareas[0].roles_con_permiso.modificar.map(id => id.toString()));
-      console.log('tareasConPermisoAvance:', tareas[0].roles_con_permiso.avance.map(id => id.toString()));
+      // console.log('tareasConPermisoModificar:', tareas[0].roles_con_permiso.modificar.map(id => id.toString()));
+      // console.log('tareasConPermisoAvance:', tareas[0].roles_con_permiso.avance.map(id => id.toString()));
       //console.log('incluyeModificar:', incluyeModificar);
       //console.log('incluyeAvance:', incluyeAvance);
       res.render('tareas/listar', { 
