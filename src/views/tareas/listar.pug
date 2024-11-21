@@ -18,7 +18,13 @@ block content
         th Acciones
     tbody
       each tarea in tareas
-        tr(complete=(tarea.estado.nombre == 'Completada' ? "true" : "false"))
+        tr(
+          complete=(tarea.estado.nombre == 'Completada' ? "true" : "false")
+          inprogress=(tarea.estado.nombre == 'En Progreso' ? "true" : "false")
+          init=(tarea.estado.nombre == 'Inicializada' ? "true" : "false")
+          pending=(tarea.estado.nombre == 'Pendiente' ? "true" : "false")
+          pause=(tarea.estado.nombre == 'Pausada' ? "true" : "false")
+        )
           td= tarea.titulo
           td= tarea.area ? tarea.area.nombre : 'Sin Area'
           td= tarea.estado ? tarea.estado.nombre : 'Sin Estado'
