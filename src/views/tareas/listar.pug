@@ -18,7 +18,7 @@ block content
         th Acciones
     tbody
       each tarea in tareas
-        tr
+        tr(complete=(tarea.estado.nombre == 'Completada' ? "true" : "false"))
           td= tarea.titulo
           td= tarea.area ? tarea.area.nombre : 'Sin Area'
           td= tarea.estado ? tarea.estado.nombre : 'Sin Estado'

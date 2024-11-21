@@ -1,8 +1,10 @@
 //- src/views/usuarios/crear.pug
 extends ../layout
 
+
 block content
   h1= titulo
+  
   form(action='/usuarios/crear', method='POST')
     label(for='nombre') Nombre:
     input(type='text', name='nombre', id='nombre', required)
@@ -27,3 +29,4 @@ block content
       
     
     button(type='submit') Crear Usuario
+    a.btn.btn-primary.volver(href='/usuarios') Volver a Usuarios

@@ -30,8 +30,14 @@ exports.formCrearUsuario = async (req, res) => {
 // Crear nuevo usuario
 exports.crearUsuario = async (req, res) => {
   const { nombre, email, contraseña, rol, area } = req.body;
-
+  const rolNewUsr = await Rol.findById(rol);
+  const areaNewUsr = await Area.findById(area);  
   try {
+    if (!rolNewUsr.nombre.includes(areaNewUsr.nombre)) {
+      console.log('El rol debe coincidir con el área');
+      req.flash('error_msg', 'El rol debe coincidir con el área');
+      return res.redirect('/usuarios/crear');
+    }
     const nuevoUsuario = new Usuario({
       nombre,
       email,
@@ -47,7 +53,8 @@ exports.crearUsuario = async (req, res) => {
     console.error(error);
     req.flash('error_msg', 'Error al crear usuario');
     res.redirect('/usuarios/crear');
-  }
+  }    
+  
 };
 
 // Formulario para editar usuario

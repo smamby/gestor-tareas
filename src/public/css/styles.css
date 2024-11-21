@@ -290,3 +290,7 @@
   a[aria-disabled="true"]:hover {
     background-color: #d6d6d6; 
   }
+  tr[complete="true"] {
+    background-color: #668399;
+    color: #d6d6d6;
+  }

@@ -13,10 +13,10 @@ const { formatDate } = require('../tools/formatDate');
 exports.getTareas = async (req, res) => {
   try {
     const tareas = await Tarea.find()
-    .populate('area', 'nombre')
-    .populate('estado', 'nombre')
-    .populate('prioridad', 'nombre')
-    .populate('usuarioAsignado', 'nombre')    
+    .populate('area')
+    .populate('estado')
+    .populate('prioridad')
+    .populate('usuarioAsignado');
     const userID = req.session.user.id;
     const rolID = req.session.user.rol;
     //const incluyeModificar = tareas[0].roles_con_permiso.modificar.map(id => id.toString()).includes(String(rolID));
