@@ -6,7 +6,9 @@ const Area = require('../models/Area');
 // Obtener todos los usuarios
 exports.getUsuarios = async (req, res) => {
   try {
-    const usuarios = await Usuario.find();
+    const usuarios = await Usuario.find()
+    .populate('area')
+    .populate('rol');
     res.render('usuarios/listar', { titulo: 'Lista de Usuarios', usuarios });
   } catch (error) {
     console.error(error);

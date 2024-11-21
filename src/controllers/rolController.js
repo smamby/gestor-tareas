@@ -33,11 +33,13 @@ exports.formCrearRol = async (req, res) => {
   // Crear nueva rol
 exports.crearRol = async (req, res) => {
   const { nombre, area } = req.body;
+  const areaNewRolName = await Area.findById(area);
+  let nombreCompleto = nombre + ' ' + areaNewRolName.nombre;
   
   try {
     const nuevoRol = new Rol({
       area,
-      nombre,
+      nombre: nombreCompleto,
     });
 
     await nuevoRol.save();
