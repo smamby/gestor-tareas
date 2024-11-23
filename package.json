@@ -21,6 +21,7 @@
     "express-session": "^1.18.1",
     "mongoose": "^8.7.1",
     "morgan": "^1.10.0",
+    "node": "^20.18.1",
     "pug": "^3.0.3"
   },
   "devDependencies": {
