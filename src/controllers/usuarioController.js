@@ -53,8 +53,7 @@ exports.crearUsuario = async (req, res) => {
     console.error(error);
     req.flash('error_msg', 'Error al crear usuario');
     res.redirect('/usuarios/crear');
-  }    
-  
+  }  
 };
 
 // Formulario para editar usuario
