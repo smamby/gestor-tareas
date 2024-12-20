@@ -42,3 +42,16 @@ Eficiencia: La interfaz es intuitiva y facilita el trabajo diario.<br>
 Trazabilidad: Siempre podemos ver qué ocurrió con una Tarea y quién la modificó.<br>
 
 En resumen, el Sistema de Gestión de Tareas es como un sistema de administración centralizado que mantiene a todos en la misma página y asegura que cada Tarea llegue a buen término de manera eficiente y segura.<br>
+
+Instruciones para correrlo con docker
+
+1- En el raiz del proyecto crear la imagen de node:
+docker build -t gestor-image .
+
+2- Correr el contenedor con esa imagen:
+docker run -d -p 3000:3000 --env-file .env gestor-image
+
+3- La base de datos ya esta configurada para correr en Mongo Atlas.
+
+4- Correr la aplicacion en el navegador
+loclahost:3000
