@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Variables para mayor claridad y mantenimiento
+REPO_URL="https://github.com/smamby/gestor-tareas.git" # URL del repositorio
 IMAGE_NAME="gestor-image"
 CONTAINER_NAME="gestor"
 PORT_MAPPING="3000:3000"
@@ -13,6 +14,11 @@ error_exit() {
   echo "Error: $1" >&2  # Imprimir en el flujo de error estándar
   exit 1
 }
+
+# Clonar el repositorio
+echo "Clonando el repositorio: $REPO_URL"
+git clone "$REPO_URL" || error_exit "La clonación del repositorio falló."
+cd gestor-tareas # Navegar al directorio del repositorio clonado
 
 # Detener y eliminar el contenedor existente si existe
 docker stop "$CONTAINER_NAME" &>/dev/null  # Silenciar la salida si no existe
