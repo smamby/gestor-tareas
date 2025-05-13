@@ -30,7 +30,7 @@ docker build -t "$IMAGE_NAME" . || error_exit "La construcción de la imagen Doc
 
 # Ejecutar el contenedor
 echo "Ejecutando el contenedor: $CONTAINER_NAME"
-docker run --name "$CONTAINER_NAME" -p "$PORT_MAPPING" --env-file "$ENV_FILE" "$IMAGE_NAME" || error_exit "El inicio del contenedor falló."
+docker run --name "$CONTAINER_NAME" -d -p "$PORT_MAPPING" --env-file "$ENV_FILE" "$IMAGE_NAME" || error_exit "El inicio del contenedor falló."
 
 # Esperar a que la aplicación esté lista (usando curl)
 echo "Esperando a que la aplicación esté lista en $URL_TO_OPEN"
