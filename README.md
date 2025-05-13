@@ -1,5 +1,9 @@
 # Sistema de Gestion de Tareas
 
+###La forma mas automatizada es descargando el script iniciar.sh y correrlo en la carpeta de destino de la aplicación. El script clona el repositorio, hace build de la imagen, corre el contenedor.
+Navegar a http://localhost:3000
+
+
 ## Explicación del Funcionamiento: 
 
 El  Sistema de Gestión de Tareas (SGT) es una herramienta que ayuda a organizar el trabajo en equipo dentro de la empresa XYZ. Funciona como un asistente virtual que permite crear tareas, asignarlas a las personas correctas y hacerles seguimiento de manera eficiente. Todo esto ocurre en un entorno seguro, donde cada usuario tiene permisos específicos dependiendo de su rol.<br>
